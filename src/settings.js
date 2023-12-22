@@ -1,3 +1,5 @@
+// Class to store necessary Props also made from the source
+
 export class Settings{
     static #props= {};
 

@@ -1,4 +1,4 @@
-
+// Class to manage Pointer controlles also made with the help from source video
 export class Pointer{
     static #x;
     static #y;

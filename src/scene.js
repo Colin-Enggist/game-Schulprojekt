@@ -1,3 +1,5 @@
+// Controls the displayed scene and in generell the display made with the help from the source
+
 import { Pointer } from "./Inputcontrolles/pointer.js";
 
 export class Scene{
@@ -7,7 +9,7 @@ export class Scene{
 
     setup= async ()=>{
         this.canvas =  document.getElementById("canvas");
-        this.ctx = canvas.getContext("2d")
+        this.ctx = canvas.getContext("2d");
 
         this.setScreenSize();
     }

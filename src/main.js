@@ -1,3 +1,4 @@
+import { Pointer } from "./Inputcontrolles/pointer.js";
 import {Screen} from "./screen.js";
 import { Settings } from "./settings.js";
 
@@ -6,6 +7,7 @@ class Engine{
         this.screen = new Screen();
         this.previousTime= Date.now();
 
+        Pointer.init();
 
         this.run();
     }
@@ -15,7 +17,6 @@ class Engine{
         this.previousTime = newTime;
 
         this.screen.run();
-
         requestAnimationFrame(this.run);
     }
 }

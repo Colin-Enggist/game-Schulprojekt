@@ -1,3 +1,5 @@
+import { Pointer } from "./Inputcontrolles/pointer.js";
+
 export class Screen{
     constructor(){
         this.setup();
@@ -5,12 +7,12 @@ export class Screen{
 
     setup= async ()=>{
         this.canvas =  document.getElementById("canvas");
-
+        this.ctx = canvas.getContext("2d")
 
         this.setScreenSize();
     }
     run(){
-        console.log("running");
+        Pointer.pos;
     }
 
     setScreenSize(){
@@ -18,7 +20,5 @@ export class Screen{
         let h = window.innerHeight;
         this.canvas.width = w; 
         this.canvas.height= h;
-         
-
     }
 }

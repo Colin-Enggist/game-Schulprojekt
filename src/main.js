@@ -1,10 +1,10 @@
 import { Pointer } from "./Inputcontrolles/pointer.js";
-import {Screen} from "./screen.js";
+import {Scene} from "./scene.js";
 import { Settings } from "./settings.js";
 
 class Engine{
     constructor(){
-        this.screen = new Screen();
+        this.scene = new Scene();
         this.previousTime= Date.now();
 
         Pointer.init();
@@ -16,7 +16,7 @@ class Engine{
         Settings.dt = (newTime - this.previousTime) / 1000;
         this.previousTime = newTime;
 
-        this.screen.run();
+        this.scene.run();
         requestAnimationFrame(this.run);
     }
 }

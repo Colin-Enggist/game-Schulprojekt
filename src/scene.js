@@ -1,6 +1,6 @@
 import { Pointer } from "./Inputcontrolles/pointer.js";
 
-export class Screen{
+export class Scene{
     constructor(){
         this.setup();
     }

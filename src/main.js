@@ -5,20 +5,30 @@ import {Scene} from "./scene.js";
 import { Settings } from "./settings.js";
 
 class Engine{
-    constructor(){
-        this.scene = new Scene();
-        this.previousTime= Date.now();
-
-        Pointer.init();
-
-        this.run();
+    constructor(){        
+        this.boot()
+        .then(this.previousTime= Date.now())
+        .then(this.run)
+        
     }
+
+    async boot(){
+        await fetch("./data/data.json")
+        .then(response=>{return response.json()})
+        .then(data=> Settings.data= data)
+
+        this.scene = new Scene();
+        Pointer.init();
+        return
+    }
+
     run = ()=>{
         let newTime = Date.now();
         Settings.dt = (newTime - this.previousTime) / 1000;
         this.previousTime = newTime;
 
         this.scene.run();
+        
         requestAnimationFrame(this.run);
     }
 }

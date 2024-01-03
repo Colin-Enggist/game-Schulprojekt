@@ -52,6 +52,7 @@ export class Display{
     }
 
     static text(x,y,size,text){
+        this.#ctx.fillStyle= "white";
         this.#ctx.font = size +" helvetica";
         this.#ctx.fillText(text,x,y);
     }

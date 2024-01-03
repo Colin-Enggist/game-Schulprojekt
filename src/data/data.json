@@ -18,6 +18,13 @@
             {"type":"goal", "name":"point","components":[],
             "display":[{"type":"circle", "x":"450", "y":"600", "r":"12","color":"lightblue"}]}
         ]
+    },{
+        "name":"rockpaperscissor", "index":"2",
+        "entitys":[
+            {"type":"figure", "name":"rock","components":[],
+        "display":[{"type":"circle", "x":"540", "y":"550", "r":"100","color":"white"},{"type":"image", "x":"460", "y":"465","w":"170","url":"./../assets/rockpaperscissor/rock.png"}]
+        }
+        ]
     }
     ]
 }

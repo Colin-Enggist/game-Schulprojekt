@@ -7,17 +7,17 @@ export class Display{
     static #canvas=  document.getElementById("canvas");
     static #ctx = this.#canvas.getContext("2d");
 
-    static draw(arr){
-        arr.forEach((draw)=>{
+    static async draw(arr){
+        await  arr.forEach((draw)=>{
             switch(draw.type){
+                case "image":
+                   this.image(draw.x,draw.y,draw.w,draw.url)
+                break;
                 case "rect":
                     this.rect(draw.x,draw.y,draw.w,draw.h,draw.color);
                 break;
                 case "circle":
                     this.circle(draw.x,draw.y,draw.r,draw.color)
-                break;
-                case "image":
-                    this.image(draw.x,draw.y,draw.w,draw.url)
                 break;
                 case "text":
                     this.text(draw.x,draw.y,draw.size,draw.text,draw.maxw,draw.color)
@@ -33,10 +33,12 @@ export class Display{
     }
 
     static circle(x, y, r, color){
+        this.#ctx.globalCompositeOperation = "destination-atop";
         this.#ctx.beginPath();
         this.#ctx.arc(x*Settings.screenScaling, y*Settings.screenScaling, r*Settings.screenScaling, 0, 2 * Math.PI);
         this.#ctx.fillStyle= color;
         this.#ctx.fill();
+       
     }
 
     static clear(x,y,w,h){
@@ -44,11 +46,12 @@ export class Display{
     }
 
     static image(x, y, w, url){
+        this.#ctx.globalCompositeOperation = "source-over";
         let img = new Image;
         img.src= url;
         let h = (w / img.width )* img.height;
-
         img.onload = async()=>{
+            
            await this.#ctx.drawImage(img, x*Settings.screenScaling, y*Settings.screenScaling, w*Settings.screenScaling, h*Settings.screenScaling);
         }
     }

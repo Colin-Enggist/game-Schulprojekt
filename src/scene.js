@@ -6,14 +6,15 @@ import { Settings } from "./settings.js";
 
 export class Scene{
     constructor(scene){
+        this.uiEl=[];
+        this.bgEl=[];
+        this.entEl=[];
         this.data= scene;
-        this.setup();
+        this.setup()
+        .then(()=>this.preloadElements())
+        .then(()=>{this.displayEl()})
 
-        this.ui = scene.ui;
-
-        this.bg = scene.bg;
-
-        this.ent = scene.ent;
+        
     }
 
     setup= async ()=>{
@@ -24,9 +25,26 @@ export class Scene{
         //pack them in an array and set each screensize
         let payload = [this.screen,this.ui,this.bg];
         this.setScreenSize(payload);
-
-
+        // getting context
+        this.ctxui= this.ui.getContext("2d");
+        this.ctxbg= this.bg.getContext("2d");
+        this.ctxent= this.screen.getContext("2d");
         return
+    }
+
+    preloadElements(){
+        this.data.ui.forEach((item)=>{
+          this.uiEl.push(new Element(item.type,item.name, this.ctxui,item.actions,item.display));
+        })
+
+        this.data.bg.forEach((item)=>{
+            this.bgEl.push(new Element(item.type,item.name,this.ctxbg,item.actions,item.display))
+        })
+    }
+
+    displayEl(){
+        this.uiEl.forEach((item)=>item.draw())
+        this.bgEl.forEach((item)=>item.draw())
     }
 
 

@@ -16,9 +16,12 @@ class Engine{
         await fetch("./data/data.json")
         .then(response=>{return response.json()})
         .then(data=> Settings.data= data)
-        .then(this.menue = new Scene(Settings.data.scenes[0]))
+        .then(Pointer.init())
+
+
+        this.menue = new Scene(Settings.data.scenes[0])
         
-        return Pointer.init();
+        return 
     }
 
     run = ()=>{
@@ -26,7 +29,7 @@ class Engine{
         Settings.dt = (newTime - this.previousTime) / 1000;
         this.previousTime = newTime;
 
-        this.scene.run();
+        this.menue.run();
         
         requestAnimationFrame(this.run);
     }

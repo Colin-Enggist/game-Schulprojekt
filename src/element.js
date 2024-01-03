@@ -2,80 +2,157 @@
 
 import { Settings } from "./settings.js";
 
+export class Element {
+  constructor(type, name, ctx, actions, arr) {
+    this.type = type;
+    this.name = name;
+    this.actions = actions; //need to implement boot up method
+    this.display = []; // will be preloaded in init function
+    this.ctx = ctx; //ctx for respective canvas
+    this.init(arr);
+  }
 
-export class Element{
+  init(arr) {
+    //preloading each display array element for faster loading
+    arr.forEach((el) => {
+      switch (el.type) {
+        case "image":
+          //preloading image object
+          let imgc = new Image();
+          imgc.src = el.url;
+          //checking if composition settings are needed and push entrie's accordingly
+          if (el.composition) {
+            this.display.push({
+              type: el.type,
+              img: imgc,
+              x: el.x * Settings.screenScaling,
+              y: el.y * Settings.screenScaling,
+              w: el.w * Settings.screenScaling,
+              h: (el.w / imgc.width) * imgc.height * Settings.screenScaling,
+              composition: el.composition,
+              comp: el.comp,
+            });
+          } else {
+            this.display.push({
+              type: el.type,
+              img: imgc,
+              x: el.x * Settings.screenScaling,
+              y: el.y * Settings.screenScaling,
+              w: el.w * Settings.screenScaling,
+              h: (el.w / imgc.width) * imgc.height * Settings.screenScaling,
+            });
+          }
+          break;
+        //same as before for other elements
+        case "rect":
+          if (el.composition) {
+            this.display.push({
+              type: el.type,
+              x: el.x * Settings.screenScaling,
+              y: el.y * Settings.screenScaling,
+              w: el.w * Settings.screenScaling,
+              h: el.h * Settings.screenScaling,
+              color: el.color,
+              composition: el.composition,
+              comp: el.comp,
+            });
+          } else {
+            this.display.push({
+              type: el.type,
+              x: el.x * Settings.screenScaling,
+              y: el.y * Settings.screenScaling,
+              w: el.w * Settings.screenScaling,
+              h: el.h * Settings.screenScaling,
+              color: el.color,
+            });
+          }
+          break;
+        case "circle":
+          if (el.composition) {
+            this.display.push({
+              type: el.type,
+              x: el.x * Settings.screenScaling,
+              y: el.y * Settings.screenScaling,
+              r: el.r * Settings.screenScaling,
+              color: el.color,
+              composition: el.composition,
+              comp: el.comp,
+            });
+          } else {
+            this.display.push({
+              type: el.type,
+              x: el.x * Settings.screenScaling,
+              y: el.y * Settings.screenScaling,
+              r: el.r * Settings.screenScaling,
+              color: el.color,
+            });
+          }
+          break;
+        case "text":
+          if (el.composition) {
+            this.display.push({
+              type: el.type,
+              x: el.x * Settings.screenScaling,
+              y: el.y * Settings.screenScaling,
+              size: el.size,
+              text: el.text,
+              maxw: el.maxw * Settings.screenScaling,
+              color: el.color,
+              composition: el.composition,
+              comp: el.comp,
+            });
+          } else {
+            this.display.push({
+              type: el.type,
+              x: el.x * Settings.screenScaling,
+              y: el.y * Settings.screenScaling,
+              size: el.size,
+              text: el.text,
+              maxw: el.maxw * Settings.screenScaling,
+              color: el.color,
+            });
+          }
+          break;
+      }
+    });
+  }
 
-    constructor(type,name,actions,display,){
-        this.type=type;
-        this.name=name;
-        this.actions= actions //need to implement boot up method
-        this.display= display // function needs to be added for preloading
-    }
+  draw() {
+    this.display.forEach((el) => {
+      if (el.composition) {
+        this.ctx.globalCompositeOperation = el.comp;
+      }
+      switch (el.type) {
+        case "image":
+          this.ctx.drawImage(el.img, el.x, el.y, el.w, el.h);
+          break;
+        case "rect":
+          this.ctx.fillStyle = el.color;
+          this.ctx.fillRect(el.x, el.y, el.w, el.h, el.color);
+          break;
+        case "circle":
+          this.ctx.beginPath();
+          this.ctx.arc(el.x, el.y, el.r, 0, 2 * Math.PI);
+          this.ctx.fillStyle = el.color;
+          this.ctx.fill();
+          break;
+        case "text":
+          this.ctx.fillStyle = "white";
+          this.ctx.fillStyle = el.color;
+          this.ctx.font = el.size + " helvetica";
+          this.ctx.fillText(el.text, el.x, el.y, el.maxw);
+          break;
+      }
+    });
+  }
 
-
-    static ui = document.getElementById("ui").getContext("2d");
-    static #canvas=  document.getElementById("canvas");
-    static #ctx = this.#canvas.getContext("2d");
-
-    static async draw(arr){
-        arr.forEach((draw)=>{
-            if(draw.composition){
-                this.composition(draw.comp)
-            }
-            switch(draw.type){
-                case "image":
-                   this.image(draw.x,draw.y,draw.w,draw.url)
-                break;
-                case "rect":
-                    this.rect(draw.x,draw.y,draw.w,draw.h,draw.color);
-                break;
-                case "circle":
-                    this.circle(draw.x,draw.y,draw.r,draw.color)
-                break;
-                case "text":
-                    this.text(draw.x,draw.y,draw.size,draw.text,draw.maxw,draw.color)
-                break;
-                }
-            }
-        )
-    }
-
-    static rect(x, y, w, h, color){
-        this.#ctx.fillStyle= color;
-        this.#ctx.fillRect(x*Settings.screenScaling,y*Settings.screenScaling,w*Settings.screenScaling,h*Settings.screenScaling);
-    }
-
-    static circle(x, y, r, color){
-        this.#ctx.beginPath();
-        this.#ctx.arc(x*Settings.screenScaling, y*Settings.screenScaling, r*Settings.screenScaling, 0, 2 * Math.PI);
-        this.#ctx.fillStyle= color;
-        this.#ctx.fill();
-       
-    }
-
-    static clear(x,y,w,h){
-        this.#ctx.clearRect(x*Settings.screenScaling,y*Settings.screenScaling,w*Settings.screenScaling,h*Settings.screenScaling);
-    }
-
-    static image(x, y, w, url){
-        let img = new Image;
-        img.src= url;
-        let h = (w / img.width )* img.height;
-        img.onload = ()=>{
-           this.#ctx.drawImage(img, x*Settings.screenScaling, y*Settings.screenScaling, w*Settings.screenScaling, h*Settings.screenScaling);
-        }
-    }
-
-
-    static text(x,y,size,text, maxw, color){
-        this.#ctx.fillStyle= "white";
-        this.#ctx.fillStyle= color;
-        this.#ctx.font = size +" helvetica";
-        this.#ctx.fillText(text,x*Settings.screenScaling,y*Settings.screenScaling,maxw*Settings.screenScaling);
-    }
-
-    static composition(value){
-        this.#ctx.globalCompositeOperation = value;
-    }
+  static clear(x, y, w, h) {
+    this.ctx.clearRect(
+      x * Settings.screenScaling,
+      y * Settings.screenScaling,
+      w * Settings.screenScaling,
+      h * Settings.screenScaling
+    );
+  }
 
 }

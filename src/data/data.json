@@ -38,7 +38,12 @@
         }
         ],
         "bg":[
-            {"type":"rect","x":"0","y":"0","w":"1080", "h":"720","color":"grey"}
+            {"type":"color","name":"bg",
+            "display":[
+                {"type":"rect","x":"0","y":"0","w":"1080", "h":"720","color":"grey"}
+                ]
+            }
+            
         ]
     },{
         "name":"snake", "index":"1",

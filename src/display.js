@@ -1,5 +1,7 @@
 // Class managing displaying things on to the canvas
 
+import { Settings } from "./settings.js";
+
 
 export class Display{
     static #canvas=  document.getElementById("canvas");
@@ -18,7 +20,7 @@ export class Display{
                     this.image(draw.x,draw.y,draw.w,draw.url)
                 break;
                 case "text":
-                    this.text(draw.x,draw.y,draw.size,draw.text)
+                    this.text(draw.x,draw.y,draw.size,draw.text,draw.maxw)
                 break;
                 }
             }
@@ -27,18 +29,18 @@ export class Display{
 
     static rect(x, y, w, h, color){
         this.#ctx.fillStyle= color;
-        this.#ctx.fillRect(x,y,w,h);
+        this.#ctx.fillRect(x*Settings.screenScaling,y*Settings.screenScaling,w*Settings.screenScaling,h*Settings.screenScaling);
     }
 
     static circle(x, y, r, color){
         ctx.beginPath();
-        ctx.arc(x, y, r, 0, 2 * Math.PI);
+        ctx.arc(x*Settings.screenScaling, y*Settings.screenScaling, r*Settings.screenScaling, 0, 2 * Math.PI);
         ctx.fillStyle= color;
         ctx.fill();
     }
 
     static clear(x,y,w,h){
-        this.#ctx.clearRect(x,y,w,h);
+        this.#ctx.clearRect(x*Settings.screenScaling,y*Settings.screenScaling,w*Settings.screenScaling,h*Settings.screenScaling);
     }
 
     static image(x, y, w, url){
@@ -47,14 +49,14 @@ export class Display{
         let h = (w / img.width )* img.height;
 
         img.onload = async()=>{
-           await this.#ctx.drawImage(img, x, y, w, h);
+           await this.#ctx.drawImage(img, x*Settings.screenScaling, y*Settings.screenScaling, w*Settings.screenScaling, h*Settings.screenScaling);
         }
     }
 
-    static text(x,y,size,text){
+    static text(x,y,size,text, maxw){
         this.#ctx.fillStyle= "white";
         this.#ctx.font = size +" helvetica";
-        this.#ctx.fillText(text,x,y);
+        this.#ctx.fillText(text,x*Settings.screenScaling,y*Settings.screenScaling,maxw*Settings.screenScaling);
     }
 
 }

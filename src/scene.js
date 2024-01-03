@@ -24,8 +24,17 @@ export class Scene{
 
     setScreenSize(){
         let w = window.innerWidth;
-        let h = window.innerHeight;
-        this.canvas.width = w; 
-        this.canvas.height= h;
+        Settings.screenScaling = w/1080;
+        if(Settings.screenScaling >1){
+            Settings.screenScaling = 1;
+            let h = 720*Settings.screenScaling;
+            this.canvas.width = 1080; 
+            this.canvas.height= h;
+        }else{
+            let h = 720*Settings.screenScaling;
+            this.canvas.width = w; 
+            this.canvas.height= h;
+        }
+        
     }
 }

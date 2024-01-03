@@ -17,7 +17,7 @@ export class Scene{
     run(){
         console.log(Pointer.pos) 
         Pointer.pos;
-        Settings.data.scenes[0].entitys.forEach((obj)=>{
+        Settings.data.scenes[1].entitys.forEach((obj)=>{
             Display.draw(obj.display)
         })
         

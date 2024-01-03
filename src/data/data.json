@@ -9,6 +9,15 @@
             "type":"text","x":"280","y":"200","size":"80px","text":"Choose Game","maxw":"1080", "color":"black"
         }]}
        ]
+    },{
+        "name":"snake", "index":"1",
+        "entitys":[
+            {"type":"player", "name":"snakeHead","components":[],"display":[{"type":"rect", "x":"200","y":"300","w":"30","h":"30","color":"darkblue"},{"type":"circle", "x":"215", "y":"300", "r":"15","color":"darkblue"}]},
+            {"type":"body","name":"snakebody","components":[],
+            "display":[{"type":"circle", "x":"215", "y":"345", "r":"12","color":"darkblue"},{"type":"rect", "x":"208","y":"345","w":"14","h":"14","color":"darkblue"},{"type":"circle", "x":"215", "y":"355", "r":"12","color":"darkblue"}]},
+            {"type":"goal", "name":"point","components":[],
+            "display":[{"type":"circle", "x":"450", "y":"600", "r":"12","color":"lightblue"}]}
+        ]
     }
     ]
 }

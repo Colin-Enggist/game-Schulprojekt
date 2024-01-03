@@ -33,10 +33,10 @@ export class Display{
     }
 
     static circle(x, y, r, color){
-        ctx.beginPath();
-        ctx.arc(x*Settings.screenScaling, y*Settings.screenScaling, r*Settings.screenScaling, 0, 2 * Math.PI);
-        ctx.fillStyle= color;
-        ctx.fill();
+        this.#ctx.beginPath();
+        this.#ctx.arc(x*Settings.screenScaling, y*Settings.screenScaling, r*Settings.screenScaling, 0, 2 * Math.PI);
+        this.#ctx.fillStyle= color;
+        this.#ctx.fill();
     }
 
     static clear(x,y,w,h){

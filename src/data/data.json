@@ -4,11 +4,42 @@
     {
        "name":"menue", "index": "0",
        "entitys":[
-        {"type":"button", "name":"Snakebutton" ,"components":[],"display":[{"type":"rect","x":"150","y":"520","w":"130", "h":"60","color":"black"},{"type":"text","x":"170","y":"560","size":"25px","text":"Snake","maxw":"100"}]},
-        {"type":"button", "name":"rockpaperscissorbutton" ,"components":[],"display":[{"type":"rect","x":"750","y":"520","w":"200", "h":"60","color":"black"},{"type":"text","x":"760","y":"557","size":"20px","text":"RockPaperScissors", "maxw":"185"},{
-            "type":"text","x":"280","y":"200","size":"80px","text":"Choose Game","maxw":"1080", "color":"black"
-        }]}
-       ]
+
+       ],
+       "ui":[
+        {
+        "type":"button", "name":"Snakebutton", 
+        "actions":[
+
+        ],
+        "display":[
+            {"type":"rect","x":"150","y":"520","w":"130", "h":"60","color":"black"},
+            {"type":"text","x":"170","y":"560","size":"25px","text":"Snake","maxw":"100"}
+        ]
+        },
+        {
+            "type":"button", "name":"rockpaperscissorbutton",
+            "actions":[
+
+            ],
+            "display":[
+                {"type":"rect","x":"750","y":"520","w":"200", "h":"60","color":"black"},
+                {"type":"text","x":"760","y":"557","size":"20px","text":"RockPaperScissors", "maxw":"185"}
+            ]
+        },
+        {
+            "type":"text","name":"titlescreen",
+            "actions":[
+
+            ],
+            "display":[
+                {"type":"text","x":"280","y":"200","size":"80px","text":"Choose Game","maxw":"1080", "color":"black"}
+            ]
+        }
+        ],
+        "bg":[
+            {"type":"rect","x":"0","y":"0","w":"1080", "h":"720","color":"grey"}
+        ]
     },{
         "name":"snake", "index":"1",
         "entitys":[
@@ -22,8 +53,8 @@
         "name":"rockpaperscissor", "index":"2",
         "entitys":[
             {"type":"figure", "name":"rock","components":[],
-        "display":[{"type":"circle", "x":"540", "y":"550", "r":"100","color":"white","composition":true,"comp":"destination-atop"},{"type":"image", "x":"460", "y":"465","w":"170","url":"./../assets/rockpaperscissor/rock.png","composition":true,"comp":"source-over"}]
-        }
+        "display":[{"type":"image", "x":"460", "y":"465","w":"170","url":"./../assets/rockpaperscissor/rock.png"},{"type":"circle", "x":"540", "y":"550", "r":"100","color":"white","composition":true,"comp":"source-out"}
+        ]}
         ]
     }
     ]

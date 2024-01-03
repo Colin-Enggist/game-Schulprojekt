@@ -8,20 +8,42 @@
     <title>Document</title>
     <style>
         .screen{
-            background-color: grey;
+            position:absolute;
+            left: 0;
+            top: 0;
+            z-index: 1;
+           
+        }
+        .UI{
+            position:absolute;
+            left: 0;
+            top: 0;
+            z-index: 2;
+        }
+        .background{
+            position:absolute;
+            left: 0;
+            top: 0;
+            z-index: 0;
         }
         .wrapper{
             width: 100%;
             max-width: 1080px;
             margin-left: auto;
             margin-right: auto;
+            position: relative;
         }
     </style>
 </head>
 <body>
     <main class="wrapper">
-
             <canvas id="canvas" class="screen">
+
+            </canvas>
+            <canvas id="ui" class="UI">
+
+            </canvas>
+            <canvas id="bg" class="background">
 
             </canvas>
     </main>

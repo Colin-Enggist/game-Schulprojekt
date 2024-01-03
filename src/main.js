@@ -16,10 +16,9 @@ class Engine{
         await fetch("./data/data.json")
         .then(response=>{return response.json()})
         .then(data=> Settings.data= data)
-
-        this.scene = new Scene();
-        Pointer.init();
-        return
+        .then(this.menue = new Scene(Settings.data.scenes[0]))
+        
+        return Pointer.init();
     }
 
     run = ()=>{

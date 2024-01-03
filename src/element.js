@@ -1,9 +1,19 @@
-// Class managing displaying things on to the canvas
+// Class managing displaying things on to the canvases and making them objects
 
 import { Settings } from "./settings.js";
 
 
-export class Display{
+export class Element{
+
+    constructor(type,name,actions,display,){
+        this.type=type;
+        this.name=name;
+        this.actions= actions //need to implement boot up method
+        this.display= display // function needs to be added for preloading
+    }
+
+
+    static ui = document.getElementById("ui").getContext("2d");
     static #canvas=  document.getElementById("canvas");
     static #ctx = this.#canvas.getContext("2d");
 
@@ -51,9 +61,8 @@ export class Display{
         let img = new Image;
         img.src= url;
         let h = (w / img.width )* img.height;
-        img.onload = async()=>{
-            
-           await this.#ctx.drawImage(img, x*Settings.screenScaling, y*Settings.screenScaling, w*Settings.screenScaling, h*Settings.screenScaling);
+        img.onload = ()=>{
+           this.#ctx.drawImage(img, x*Settings.screenScaling, y*Settings.screenScaling, w*Settings.screenScaling, h*Settings.screenScaling);
         }
     }
 

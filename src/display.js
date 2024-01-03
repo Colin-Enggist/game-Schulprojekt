@@ -5,6 +5,17 @@ export class Display{
     static #canvas=  document.getElementById("canvas");
     static #ctx = this.#canvas.getContext("2d");
 
+    static draw(arr){
+        arr.forEach((draw)=>{
+            switch(draw.type){
+                case "rect":{
+                    this.rect(draw.x,draw.y,draw.w,draw.h);
+                break;
+                }
+            }
+        })
+    }
+
     static rect(x, y, w, h, color){
         this.#ctx.fillStyle= color;
         this.#ctx.fillRect(x,y,w,h);

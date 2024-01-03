@@ -1,6 +1,7 @@
 // Controls the displayed scene and in generell the display made with the help from the source
 
 import { Pointer } from "./Inputcontrolles/pointer.js";
+import { Display } from "./display.js";
 import { Settings } from "./settings.js";
 
 export class Scene{
@@ -15,6 +16,10 @@ export class Scene{
     }
     run(){
         Pointer.pos;
+        Settings.data.scenes[0].entitys.forEach((obj)=>{
+            Display.draw(obj.display)
+        })
+        
     }
 
     setScreenSize(){

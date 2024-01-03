@@ -20,7 +20,7 @@ export class Display{
                     this.image(draw.x,draw.y,draw.w,draw.url)
                 break;
                 case "text":
-                    this.text(draw.x,draw.y,draw.size,draw.text,draw.maxw)
+                    this.text(draw.x,draw.y,draw.size,draw.text,draw.maxw,draw.color)
                 break;
                 }
             }
@@ -53,8 +53,9 @@ export class Display{
         }
     }
 
-    static text(x,y,size,text, maxw){
+    static text(x,y,size,text, maxw, color){
         this.#ctx.fillStyle= "white";
+        this.#ctx.fillStyle= color;
         this.#ctx.font = size +" helvetica";
         this.#ctx.fillText(text,x*Settings.screenScaling,y*Settings.screenScaling,maxw*Settings.screenScaling);
     }

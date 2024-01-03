@@ -15,6 +15,7 @@ export class Scene{
         this.setScreenSize();
     }
     run(){
+        console.log(Pointer.pos) 
         Pointer.pos;
         Settings.data.scenes[0].entitys.forEach((obj)=>{
             Display.draw(obj.display)

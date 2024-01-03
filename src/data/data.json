@@ -4,8 +4,10 @@
     {
        "name":"menue", "index": "0",
        "entitys":[
-        {"type":"button", "name":"Snakebutton" ,"components":[],"display":[{"type":"rect","x":"200","y":"200","w":"130", "h":"60","color":"black"},{"type":"text","x":"220","y":"240","size":"25px","text":"Snake","maxw":"100"}]},
-        {"type":"button", "name":"rockpaperscissorbutton" ,"components":[],"display":[{"type":"rect","x":"200","y":"400","w":"200", "h":"60","color":"black"},{"type":"text","x":"210","y":"437","size":"20px","text":"RockPaperScissors", "maxw":"185"}]}
+        {"type":"button", "name":"Snakebutton" ,"components":[],"display":[{"type":"rect","x":"150","y":"520","w":"130", "h":"60","color":"black"},{"type":"text","x":"170","y":"560","size":"25px","text":"Snake","maxw":"100"}]},
+        {"type":"button", "name":"rockpaperscissorbutton" ,"components":[],"display":[{"type":"rect","x":"750","y":"520","w":"200", "h":"60","color":"black"},{"type":"text","x":"760","y":"557","size":"20px","text":"RockPaperScissors", "maxw":"185"},{
+            "type":"text","x":"280","y":"200","size":"80px","text":"Choose Game","maxw":"1080", "color":"black"
+        }]}
        ]
     }
     ]

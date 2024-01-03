@@ -8,12 +8,21 @@ export class Display{
     static draw(arr){
         arr.forEach((draw)=>{
             switch(draw.type){
-                case "rect":{
-                    this.rect(draw.x,draw.y,draw.w,draw.h);
+                case "rect":
+                    this.rect(draw.x,draw.y,draw.w,draw.h,draw.color);
+                break;
+                case "circle":
+                    this.circle(draw.x,draw.y,draw.r,draw.color)
+                break;
+                case "image":
+                    this.image(draw.x,draw.y,draw.w,draw.url)
+                break;
+                case "text":
+                    this.text(draw.x,draw.y,draw.size,draw.text)
                 break;
                 }
             }
-        })
+        )
     }
 
     static rect(x, y, w, h, color){
@@ -40,6 +49,11 @@ export class Display{
         img.onload = async()=>{
            await this.#ctx.drawImage(img, x, y, w, h);
         }
+    }
+
+    static text(x,y,size,text){
+        this.#ctx.font = size +" helvetica";
+        this.#ctx.fillText(text,x,y);
     }
 
 }

@@ -8,7 +8,10 @@ export class Display{
     static #ctx = this.#canvas.getContext("2d");
 
     static async draw(arr){
-        await  arr.forEach((draw)=>{
+        arr.forEach((draw)=>{
+            if(draw.composition){
+                this.composition(draw.comp)
+            }
             switch(draw.type){
                 case "image":
                    this.image(draw.x,draw.y,draw.w,draw.url)
@@ -33,7 +36,6 @@ export class Display{
     }
 
     static circle(x, y, r, color){
-        this.#ctx.globalCompositeOperation = "destination-atop";
         this.#ctx.beginPath();
         this.#ctx.arc(x*Settings.screenScaling, y*Settings.screenScaling, r*Settings.screenScaling, 0, 2 * Math.PI);
         this.#ctx.fillStyle= color;
@@ -46,7 +48,6 @@ export class Display{
     }
 
     static image(x, y, w, url){
-        this.#ctx.globalCompositeOperation = "source-over";
         let img = new Image;
         img.src= url;
         let h = (w / img.width )* img.height;
@@ -56,11 +57,16 @@ export class Display{
         }
     }
 
+
     static text(x,y,size,text, maxw, color){
         this.#ctx.fillStyle= "white";
         this.#ctx.fillStyle= color;
         this.#ctx.font = size +" helvetica";
         this.#ctx.fillText(text,x*Settings.screenScaling,y*Settings.screenScaling,maxw*Settings.screenScaling);
+    }
+
+    static composition(value){
+        this.#ctx.globalCompositeOperation = value;
     }
 
 }

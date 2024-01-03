@@ -19,7 +19,7 @@ class Engine{
         .then(Pointer.init())
 
 
-        this.menue = new Scene(Settings.data.scenes[0])
+        this.menue = new Scene(Settings.data.scenes[2])
         
         return 
     }

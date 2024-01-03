@@ -48,19 +48,64 @@
     },{
         "name":"snake", "index":"1",
         "entitys":[
-            {"type":"player", "name":"snakeHead","components":[],"display":[{"type":"rect", "x":"200","y":"300","w":"30","h":"30","color":"darkblue"},{"type":"circle", "x":"215", "y":"300", "r":"15","color":"darkblue"}]},
-            {"type":"body","name":"snakebody","components":[],
-            "display":[{"type":"circle", "x":"215", "y":"345", "r":"12","color":"darkblue"},{"type":"rect", "x":"208","y":"345","w":"14","h":"14","color":"darkblue"},{"type":"circle", "x":"215", "y":"355", "r":"12","color":"darkblue"}]},
-            {"type":"goal", "name":"point","components":[],
-            "display":[{"type":"circle", "x":"450", "y":"600", "r":"12","color":"lightblue"}]}
+            {"type":"player", "name":"snakeHead",
+            "actions":[
+
+            ],
+            "display":[
+                {"type":"rect", "x":"200","y":"300","w":"30","h":"30","color":"darkblue"},
+                {"type":"circle", "x":"215", "y":"300", "r":"15","color":"darkblue"}
+                ]
+            },
+            {"type":"body","name":"snakebody",
+            "actions":[
+
+            ],
+            "display":[
+                {"type":"circle", "x":"215", "y":"345", "r":"12","color":"darkblue"},
+                {"type":"rect", "x":"208","y":"345","w":"14","h":"14","color":"darkblue"},
+                {"type":"circle", "x":"215", "y":"355", "r":"12","color":"darkblue"}
+                ]},
+            {"type":"goal", "name":"point",
+            "actions":[
+
+            ],
+            "display":[
+                {"type":"circle", "x":"450", "y":"600", "r":"12","color":"lightblue"}
+                ]
+            }
+        ],
+        "ui":[
+
+        ],
+        "bg":[
+
         ]
+        
     },{
         "name":"rockpaperscissor", "index":"2",
         "entitys":[
-            {"type":"figure", "name":"rock","components":[],
-        "display":[{"type":"image", "x":"460", "y":"465","w":"170","url":"./../assets/rockpaperscissor/rock.png"},{"type":"circle", "x":"540", "y":"550", "r":"100","color":"white","composition":true,"comp":"source-out"}
-        ]}
+            {"type":"figure", "name":"rock",
+            "components":[
+
+            ],
+        "display":[
+            {"type":"image", "x":"460", "y":"465","w":"170","url":"./../assets/rockpaperscissor/rock.png"},
+            {"type":"circle", "x":"540", "y":"550", "r":"100","color":"white","composition":true,"comp":"source-out"}
         ]
+        }
+        ],
+        "ui":[
+
+        ],
+        "bg":[
+            {"type":"color","name":"bg",
+            "display":[
+                {"type":"rect","x":"0","y":"0","w":"1080", "h":"720","color":"grey"}
+                ]
+            }
+        ]
+
     }
     ]
 }

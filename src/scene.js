@@ -40,21 +40,22 @@ export class Scene{
         this.data.bg.forEach((item)=>{
             this.bgEl.push(new Element(item.type,item.name,this.ctxbg,item.actions,item.display))
         })
+
+        this.data.entitys.forEach((item)=>{
+            this.entEl.push(new Element(item.type,item.name,this.ctxent,item.actions,item.display))})
     }
 
     displayEl(){
         this.uiEl.forEach((item)=>item.draw())
         this.bgEl.forEach((item)=>item.draw())
+        this.entEl.forEach((item)=>{item.draw()})
     }
 
 
     run(){
         console.log(Pointer.pos) 
         Pointer.pos;
-        Settings.data.scenes[0].entitys.forEach((obj)=>{
-            Display.draw(obj.display)
-        })
-        
+        this.entEl.forEach((item)=>{item.draw()})
     }
 
 

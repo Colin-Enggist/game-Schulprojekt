@@ -16,8 +16,6 @@ export class Element {
       this.loadDisplay(arr)
   }
 
-  
-
   loadDisplay(arr){
     arr.forEach((el) => {
       // images treated differently in having the img property

@@ -43,13 +43,7 @@ class Engine{
         Settings.dt = (newTime - this.previousTime) / 1000;
         this.previousTime = newTime;
 
-        Pointer.pos
-        Pointer.action
-
-        console.log(Pointer.pos,Pointer.action)
-        this.scenes[this.currentscene].ent[1].forEach((el)=>{main.draw(el.display);});
-
-
+        this.scenes[this.currentscene].update()
         requestAnimationFrame(this.run);
     }
 }

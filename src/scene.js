@@ -6,49 +6,47 @@ import { Settings } from "./settings.js";
 
 export class Scene{
     constructor(scene){
-        this.uiEl=[];
-        this.bgEl=[];
-        this.entEl=[];
-        this.data= scene;
-        this.setup()
-        .then(()=>this.preloadElements())
-        .then(()=>{this.displayEl()})
-
-        
+        this.screens={
+            main: document.getElementById("canvas"),
+            ui: document.getElementById("ui"),
+            bg: document.getElementById("bg")
+        }
+        this.ctx={
+            main: this.screens.main.getContext("2d"),
+            ui: this.screens.ui.getContext("2d"),
+            bg: this.screens.bg.getContext("2d")
+        }
+        this.setup(scene)
     }
 
-    setup= async ()=>{
-        //getting the canvases ready 
-        this.screen =  document.getElementById("canvas");
-        this.ui = document.getElementById("ui");
-        this.bg = document.getElementById("bg");
-        //pack them in an array and set each screensize
-        let payload = [this.screen,this.ui,this.bg];
-        this.setScreenSize(payload);
-        // getting context
-        this.ctxui= this.ui.getContext("2d");
-        this.ctxbg= this.bg.getContext("2d");
-        this.ctxent= this.screen.getContext("2d");
+    setup= async (scene)=>{
+        this.setScreenSize([this.screens.main,this.screens.ui,this.screens.bg]);
+        await this.preloadElements(scene)
+        return this.displayEl()
+    }
+
+    async preloadElements(data){
+        this.uiEl=[];
+        await data.ui.forEach((item)=>{
+          this.uiEl.push(new Element(item.type,item.name, this.ctx.ui,item.actions,item.display));
+        })
+
+        this.bgEl=[];
+        await data.bg.forEach((item)=>{
+            this.bgEl.push(new Element(item.type,item.name,this.ctx.bg,item.actions,item.display))
+        })
+
+        this.entEl=[];
+        await data.entitys.forEach((item)=>{
+            this.entEl.push(new Element(item.type,item.name,this.ctx.main,item.actions,item.display))})
+
         return
     }
 
-    preloadElements(){
-        this.data.ui.forEach((item)=>{
-          this.uiEl.push(new Element(item.type,item.name, this.ctxui,item.actions,item.display));
-        })
-
-        this.data.bg.forEach((item)=>{
-            this.bgEl.push(new Element(item.type,item.name,this.ctxbg,item.actions,item.display))
-        })
-
-        this.data.entitys.forEach((item)=>{
-            this.entEl.push(new Element(item.type,item.name,this.ctxent,item.actions,item.display))})
-    }
-
     displayEl(){
-        this.uiEl.forEach((item)=>item.draw())
+        this.uiEl.forEach((item)=> item.draw())
         this.bgEl.forEach((item)=>item.draw())
-        this.entEl.forEach((item)=>{item.draw()})
+        this.entEl.forEach((item)=>item.draw())
     }
 
 

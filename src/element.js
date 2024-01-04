@@ -13,6 +13,12 @@ export class Element {
 
   init(arr) {
     //preloading each display array element for faster loading
+      this.loadDisplay(arr)
+  }
+
+  
+
+  loadDisplay(arr){
     arr.forEach((el) => {
       // images treated differently in having the img property
       if (el.type === "image") {
@@ -58,6 +64,5 @@ export class Element {
       }
     });
   }
-
   
 }

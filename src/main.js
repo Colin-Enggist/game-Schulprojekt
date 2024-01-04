@@ -3,6 +3,7 @@
 import { Pointer } from "./Inputcontrolles/pointer.js";
 import {Scene} from "./scene.js";
 import { Settings } from "./settings.js";
+import { main, bg, ui } from "./screen.js";
 
 class Engine{
     constructor(){        
@@ -34,13 +35,21 @@ class Engine{
         return  this.scenes[this.currentscene].setup();
     }
 
+    
+
 
     run = ()=>{
         let newTime = Date.now();
         Settings.dt = (newTime - this.previousTime) / 1000;
         this.previousTime = newTime;
 
-        this.scenes[this.currentscene].run();
+        Pointer.pos
+        Pointer.action
+
+        console.log(Pointer.pos,Pointer.action)
+        this.scenes[this.currentscene].ent[1].forEach((el)=>{main.draw(el.display);});
+
+
         requestAnimationFrame(this.run);
     }
 }

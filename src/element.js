@@ -7,7 +7,7 @@ export class Element {
     this.type = type;
     this.name = name;
     this.actions = actions; //need to implement boot up method
-    this.display = []; // will be preloaded in init function
+    this.display = []; // will be loaded in init function
     this.ctx = ctx; //ctx for respective canvas
     this.init(arr);
   }

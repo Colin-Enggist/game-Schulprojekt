@@ -1,5 +1,5 @@
 {
-"Index":{"0":"menue","1":"snake","2":"rockpaperscissor"},
+"index":["menue","snake","rockpaperscissor"],
 "scenes" : [
     {
        "name":"menue", "index": "0",

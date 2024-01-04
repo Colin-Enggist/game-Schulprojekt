@@ -1,11 +1,11 @@
 // Controls the displayed scene and in generell the display made with the help from the source
 
-import { Pointer } from "./Inputcontrolles/pointer.js";
 import { Element} from "./element.js";
 import { Settings } from "./settings.js";
 
 export class Scene{
-    constructor(){
+    constructor(data){
+        this.data= data;
         this.screens={
             main: document.getElementById("canvas"),
             ui: document.getElementById("ui"),
@@ -18,9 +18,9 @@ export class Scene{
         }
     }
 
-    setup= async (scene)=>{
+    setup= async ()=>{
         this.setScreenSize([this.screens.main,this.screens.ui,this.screens.bg]);
-        await this.preloadElements(scene)
+        await this.preloadElements(this.data)
         return this.displayEl()
     }
 
@@ -50,8 +50,6 @@ export class Scene{
 
 
     run(){
-        console.log(Pointer.pos) 
-        Pointer.pos;
         this.entEl.forEach((item)=>{item.draw()})
     }
 

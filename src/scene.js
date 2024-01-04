@@ -43,10 +43,7 @@ export class Scene{
     }
 
     update(){
-        Pointer.pos
-        Pointer.action
-
-        console.log(Pointer.pos,Pointer.action)
+        
         this.ent[1].forEach((el)=>{main.draw(el.display);});
     }
 

@@ -35,16 +35,27 @@ class Engine{
         return  this.scenes[this.currentscene].setup();
     }
 
-    
+    input(){
+        Pointer.pos
+        Pointer.event
+        console.log(Pointer.pos,Pointer.event)
+        if(Pointer.event){
+            return true
+        }else{return false}
+    }
 
 
-    run = ()=>{
+    run =async ()=>{
         let newTime = Date.now();
         Settings.dt = (newTime - this.previousTime) / 1000;
         this.previousTime = newTime;
 
+        var event= this.input()
+
+        if(event==false){
         this.scenes[this.currentscene].update()
         requestAnimationFrame(this.run);
+    }
     }
 }
 

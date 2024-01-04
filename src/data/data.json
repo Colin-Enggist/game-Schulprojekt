@@ -96,6 +96,24 @@
             {"type":"image", "x":"460", "y":"465","w":"170","url":"./../assets/rockpaperscissor/rock.png"},
             {"type":"circle", "x":"540", "y":"550", "r":"100","color":"white", "composition":true, "comp":"source-over"}
         ]
+        },
+        {"type":"button", "name":"paper",
+            "actions":[
+
+            ],
+        "display":[
+            {"type":"image", "x":"100", "y":"315","w":"160","url":"./../assets/rockpaperscissor/paper.png"},
+            {"type":"circle", "x":"190", "y":"400", "r":"100","color":"white", "composition":true, "comp":"source-over"}
+        ]
+        },
+        {"type":"button", "name":"scissor",
+            "actions":[
+
+            ],
+        "display":[
+            {"type":"image", "x":"810", "y":"315","w":"170","url":"./../assets/rockpaperscissor/scissor.png"},
+            {"type":"circle", "x":"890", "y":"400", "r":"100","color":"white", "composition":true, "comp":"source-over"}
+        ]
         }
         ],
         "bg":[

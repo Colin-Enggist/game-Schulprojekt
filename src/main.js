@@ -19,7 +19,8 @@ class Engine{
         .then(Pointer.init())
 
 
-        this.menue = new Scene(Settings.data.scenes[2])
+        this.menue = new Scene()
+        this.menue.setup(Settings.data.scenes[0])
         
         return 
     }

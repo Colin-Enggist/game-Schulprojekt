@@ -117,7 +117,7 @@ export class Element {
     });
   }
 
-  async draw() {
+  draw() {
     this.display.forEach((el) => {
       if (el.composition) {
         this.ctx.globalCompositeOperation = el.comp;
@@ -127,7 +127,6 @@ export class Element {
             el.img.onload= ()=>{
               this.ctx.drawImage(el.img, el.x, el.y, el.w, el.h);
             }
-            console.log(el.img)
             break;
           case "rect":
             this.ctx.fillStyle = el.color;

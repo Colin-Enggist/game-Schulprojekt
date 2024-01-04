@@ -5,7 +5,7 @@ import { Element} from "./element.js";
 import { Settings } from "./settings.js";
 
 export class Scene{
-    constructor(scene){
+    constructor(){
         this.screens={
             main: document.getElementById("canvas"),
             ui: document.getElementById("ui"),
@@ -16,7 +16,6 @@ export class Scene{
             ui: this.screens.ui.getContext("2d"),
             bg: this.screens.bg.getContext("2d")
         }
-        this.setup(scene)
     }
 
     setup= async (scene)=>{

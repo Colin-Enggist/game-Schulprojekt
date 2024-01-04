@@ -11,7 +11,6 @@ export class Settings{
                 enumerable: true,
                 get:()=>this.#props[prop],
                 set:(val)=>{this.#props[prop]=val}
-
             });
         }
         this.#props[prop]= value;

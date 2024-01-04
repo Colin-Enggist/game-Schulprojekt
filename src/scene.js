@@ -2,6 +2,7 @@
 
 import { Element} from "./element.js";
 import { Settings } from "./settings.js";
+import { Pointer } from "./Inputcontrolles/pointer.js";
 
 export class Scene{
     constructor(data){
@@ -50,6 +51,10 @@ export class Scene{
 
 
     run(){
+        Pointer.pos
+        Pointer.action
+        
+        console.log(Pointer.pos,Pointer.action)
         this.entEl.forEach((item)=>{item.draw()})
     }
 

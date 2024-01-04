@@ -26,11 +26,12 @@ class Engine{
 
     loadscenes(){
        this.reference = Settings.data.index;
+       this.currentscene = 0;
         this.scenes=[];
         Settings.data.scenes.forEach((scene)=>{
             this.scenes.push(new Scene(scene));
         })
-        return  this.scenes[0].setup();
+        return  this.scenes[this.currentscene].setup();
     }
 
 
@@ -39,10 +40,7 @@ class Engine{
         Settings.dt = (newTime - this.previousTime) / 1000;
         this.previousTime = newTime;
 
-        console.log(Pointer.pos) 
-        Pointer.pos;
-
-        this.scenes[0].run();
+        this.scenes[this.currentscene].run();
         requestAnimationFrame(this.run);
     }
 }

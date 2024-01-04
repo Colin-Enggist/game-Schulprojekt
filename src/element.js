@@ -3,12 +3,11 @@
 import { Settings } from "./settings.js";
 
 export class Element {
-  constructor(type, name, ctx, actions, arr) {
+  constructor(type, name, actions, arr) {
     this.type = type;
     this.name = name;
     this.actions = actions; //need to implement boot up method
     this.display = []; // will be loaded in init function
-    this.ctx = ctx; //ctx for respective canvas
     this.init(arr);
   }
 
@@ -57,48 +56,8 @@ export class Element {
         //pushing it in the array
         return this.display.push(obj);
       }
-
-     
     });
   }
 
-  draw() {
-    this.display.forEach((el) => {
-      if (el.composition) {
-        this.ctx.globalCompositeOperation = el.comp;
-      }
-      switch (el.type) {
-        case "image":
-          el.img.onload = () => {
-            this.ctx.drawImage(el.img, el.x, el.y, el.w, el.h);
-          };
-          break;
-        case "rect":
-          this.ctx.fillStyle = el.color;
-          this.ctx.fillRect(el.x, el.y, el.w, el.h, el.color);
-          break;
-        case "circle":
-          this.ctx.beginPath();
-          this.ctx.arc(el.x, el.y, el.r, 0, 2 * Math.PI);
-          this.ctx.fillStyle = el.color;
-          this.ctx.fill();
-          break;
-        case "text":
-          this.ctx.fillStyle = "white";
-          this.ctx.fillStyle = el.color;
-          this.ctx.font = el.size + " helvetica";
-          this.ctx.fillText(el.text, el.x, el.y, el.maxw);
-          break;
-      }
-    });
-  }
-
-  static clear(x, y, w, h) {
-    this.ctx.clearRect(
-      x * Settings.screenScaling,
-      y * Settings.screenScaling,
-      w * Settings.screenScaling,
-      h * Settings.screenScaling
-    );
-  }
+  
 }

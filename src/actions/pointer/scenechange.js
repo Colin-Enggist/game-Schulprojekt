@@ -29,15 +29,14 @@ export default class Scenechange{
 
 
 
-    static action(value){    
-        console.log(value)
+    static action(){
         
     }
 
     static listener(){
         this.#attached.forEach((obj)=>{
             if(Pointer.pos.x >= obj.pos.x && Pointer.pos.x <= obj.pos.x+obj.dim.w && Pointer.pos.y >= obj.pos.y && Pointer.pos.y <= obj.pos.y+obj.dim.h){
-                return Pointer.event={state:true,type:"scenechange",call:(value)=>this.action(value),value:obj.action.value}
+                return Pointer.event={state:true,execution: "engine",type:"scenechange",call:(value)=>this.action(value),value:obj.action.value}
             }
         })
     }

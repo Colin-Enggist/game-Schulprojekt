@@ -48,30 +48,30 @@
     },{
         "name":"snake", "index":"1",
         "entitys":[
-            {"type":"player", "name":"snakeHead",
+            {"type":"player", "name":"snakeHead","pos":{"x":"200","y":"300"},"dim":{"w":"30","h":"45"},
             "actions":[
 
             ],
             "display":[
-                {"type":"rect", "x":"200","y":"300","w":"30","h":"30","color":"darkblue"},
-                {"type":"circle", "x":"215", "y":"300", "r":"15","color":"darkblue"}
+                {"type":"rect", "x":"0","y":"0","w":"30","h":"30","color":"darkblue"},
+                {"type":"circle", "x":"15", "y":"0", "r":"15","color":"darkblue"}
                 ]
             },
-            {"type":"body","name":"snakebody",
+            {"type":"body","name":"snakebody", "pos":{"x":"208","y":"345"},"dim":{"w":"24","h":"34"},
             "actions":[
 
             ],
             "display":[
-                {"type":"circle", "x":"215", "y":"345", "r":"12","color":"darkblue"},
-                {"type":"rect", "x":"208","y":"345","w":"14","h":"14","color":"darkblue"},
-                {"type":"circle", "x":"215", "y":"355", "r":"12","color":"darkblue"}
+                {"type":"circle", "x":"7", "y":"0", "r":"12","color":"darkblue"},
+                {"type":"rect", "x":"0","y":"0","w":"14","h":"14","color":"darkblue"},
+                {"type":"circle", "x":"7", "y":"10", "r":"12","color":"darkblue"}
                 ]},
-            {"type":"goal", "name":"point",
+            {"type":"goal", "name":"point", "pos":{"x":"450","y":"600"},"dim":{"w":"24","h":"24"},
             "actions":[
 
             ],
             "display":[
-                {"type":"circle", "x":"450", "y":"600", "r":"12","color":"lightblue"}
+                {"type":"circle", "x":"0", "y":"0", "r":"12","color":"lightblue"}
                 ]
             }
         ],
@@ -79,7 +79,11 @@
 
         ],
         "bg":[
-
+            {"type":"color","name":"bg","pos":{"x":"0","y":"0"},"dim":{"w":"1080","h":"720"},
+            "display":[
+                {"type":"rect","x":"0","y":"0","w":"1080", "h":"720","color":"lightgrey"}
+                ]
+            }
         ]
         
     },{

@@ -3,7 +3,6 @@
 import { Pointer } from "./Inputcontrolles/pointer.js";
 import {Scene} from "./scene.js";
 import { Settings } from "./settings.js";
-import { main, bg, ui } from "./screen.js";
 
 class Engine{
     
@@ -18,23 +17,29 @@ class Engine{
         .then(data=> Settings.data= data)
         .then(this.previousTime= Date.now())
         .then(Pointer.init())
+        .then(()=>{
+            this.reference=Settings.data.index
+            this.scenes=[];
+            Settings.data.scenes.forEach((scene)=>{
+            this.scenes.push(new Scene(scene));
+        })})
 
        // wait until every scene is loaded and display first frame
-        await this.loadscenes()
+        await this.loadscenes("boot")
 
         // return with starting the loop
         return this.run()
     }
 
-    loadscenes(){ 
-       this.reference=Settings.data.index
-
-       this.currentscene = 0;
-        this.scenes=[];
-        Settings.data.scenes.forEach((scene)=>{
-            this.scenes.push(new Scene(scene));
-        })
-        return  this.scenes[this.currentscene].setup();
+    loadscenes(sceneIndex){
+        if(sceneIndex === "boot"){
+            this.currentscene = 0;
+            return  this.scenes[this.currentscene].setup();
+        }else{
+            this.currentscene = this.reference.indexOf(sceneIndex);
+            this.currentscene === -1? console.log("Error: scene not found") : this.scenes[this.currentscene].setup();
+            return
+        }
     }
 
     input(){
@@ -46,6 +51,14 @@ class Engine{
         }else{return {state:false,type:undefined}}
     }
 
+    engineevents(event){
+        switch(event.type){
+            case "scenechange":
+                this.loadscenes(event.value);
+            break;
+        }
+    }
+
 
     run =async ()=>{
         let newTime = Date.now();
@@ -53,12 +66,16 @@ class Engine{
         this.previousTime = newTime;
 
         var event= this.input()
-
+        
         if(event.state==false){
         this.scenes[this.currentscene].update()
         requestAnimationFrame(this.run);
     }else{
-        event.call(event.value);
+        switch(event.execution){
+            case "engine":
+                this.engineevents(event);
+            break;
+        }
     }
     }
 }

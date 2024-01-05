@@ -31,6 +31,7 @@ export default class Scenechange{
 
     static action(value){    
         console.log(value)
+        
     }
 
     static listener(){

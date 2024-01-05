@@ -6,7 +6,8 @@ import { Settings } from "./settings.js";
 import { main, bg, ui } from "./screen.js";
 
 class Engine{
-    constructor(){        
+    
+    constructor(){     
         this.boot() 
     }
 
@@ -25,8 +26,9 @@ class Engine{
         return this.run()
     }
 
-    loadscenes(){
-       this.reference = Settings.data.index;
+    loadscenes(){ 
+       this.reference=Settings.data.index
+
        this.currentscene = 0;
         this.scenes=[];
         Settings.data.scenes.forEach((scene)=>{

@@ -57,7 +57,6 @@ class Engine{
             case "scenechange":
                 this.loadscenes(event.value);
                 Pointer.resetaction();
-                requestAnimationFrame(this.run);
             break;
         }
     }
@@ -78,8 +77,10 @@ class Engine{
         switch(event.execution){
             case "engine":
                 this.engineevents(event);
+                
             break;
         }
+        requestAnimationFrame(this.run);
     }
     
     }

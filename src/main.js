@@ -51,11 +51,12 @@ class Engine{
         this.previousTime = newTime;
 
         var event= this.input()
-        console.log(event);
 
         if(event.state==false){
         this.scenes[this.currentscene].update()
         requestAnimationFrame(this.run);
+    }else{
+        event.call(event.value);
     }
     }
 }

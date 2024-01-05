@@ -30,7 +30,7 @@ export default class Scenechange{
 
 
     static action(value){    
-        console.log("sceneaction")
+        console.log(value)
     }
 
     static listener(){

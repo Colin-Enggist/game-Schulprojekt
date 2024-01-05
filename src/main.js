@@ -56,9 +56,10 @@ class Engine{
         switch(event.type){
             case "scenechange":
                 this.loadscenes(event.value);
-                Pointer.resetaction();
+                
             break;
         }
+        Pointer.resetaction();
     }
 
 
@@ -70,7 +71,7 @@ class Engine{
         var event= this.input()
         
         if(event.state==false){
-        this.scenes[this.currentscene].update()
+        this.scenes[this.currentscene].newframe()
         requestAnimationFrame(this.run);
         
     }else{
@@ -78,6 +79,9 @@ class Engine{
             case "engine":
                 this.engineevents(event);
                 
+            break;
+            case "scene":
+                this.scenes[this.currentscene].sceneEvent(event);
             break;
         }
         requestAnimationFrame(this.run);

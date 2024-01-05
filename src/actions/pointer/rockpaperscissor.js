@@ -39,13 +39,13 @@ export default class Rockpaperscissor {
         Pointer.pos.y >= parseFloat(obj.pos.y) * Settings.screenScaling &&
         Pointer.pos.y <= (parseFloat(obj.pos.y) + parseFloat(obj.dim.h)) * Settings.screenScaling
       ) {
-        return (/*Pointer.event = {
+        return (Pointer.event = {
           state: true,
           execution: "scene",
           type: "rockpaperscissor",
           call: (value) => this.action(value),
           value: obj.action.value,
-        }*/ console.log("rock"));
+        });
       }
     });
   }

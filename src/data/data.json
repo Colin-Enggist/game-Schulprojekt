@@ -111,7 +111,7 @@
                     {"type":"text","x":"20","y":"40","size":"25px","text":"Menue","maxw":"100"}
                 ]
                 },
-            {"type":"button", "name":"rock","pos":{"x":"460","y":"465"},"dim":{"w":"200","h":"200"},
+        {"type":"button", "name":"rock","pos":{"x":"460","y":"465"},"dim":{"w":"200","h":"200"},
             "actions":[
                 {"type":"rockpaperscissor","value":"rock"}
             ],

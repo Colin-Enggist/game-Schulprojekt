@@ -14,7 +14,7 @@ export default class Scenechange {
 
   static removebyname(name) {
     //find the right index for removal and safe it in c
-    var c = this.#index.findIndex(name);
+    var c = this.#index.indexOf(name);
     //check if anything is found and when ther is something delete one entry at index c
     c = -1
       ? console.log("error no element found")

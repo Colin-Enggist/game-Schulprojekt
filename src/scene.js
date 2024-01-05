@@ -45,9 +45,40 @@ export class Scene{
         this.ent[1].forEach((el)=>{main.draw(el.display);}); 
     }
 
-    update(){
-        
+    newframe(){
         this.ent[1].forEach((el)=>{main.draw(el.display);});
+    }
+
+    removeEnt(screennumb,elName){
+        var c = this.ent[screennumb].findIndex((el)=>el.name=== elName);
+        //check if anything is found and when ther is something delete one entry at index c
+        c === -1? console.log("error no element found") : this.ent[screennumb].splice(c, 1);
+        this.ent[screennumb].forEach((el)=>{ui.draw(el.display);});
+
+    }
+
+    update(screen,entname,valuechanges){
+        switch(screen){
+            case "ui":
+                this.removeEnt(0,entname);
+                
+            break;
+            case "main":
+
+            break;
+            case "bg":
+
+            break;
+        }
+    }
+
+    sceneEvent(event){
+        switch(event.type){
+            case "rockpaperscissor":
+                this.update("ui",event.value,"duhh")
+            break;
+        }
+        Pointer.resetaction();
     }
 
 }

@@ -55,6 +55,7 @@ class Engine{
         switch(event.type){
             case "scenechange":
                 this.loadscenes(event.value);
+                requestAnimationFrame(this.run);
             break;
         }
     }
@@ -70,6 +71,7 @@ class Engine{
         if(event.state==false){
         this.scenes[this.currentscene].update()
         requestAnimationFrame(this.run);
+        
     }else{
         switch(event.execution){
             case "engine":
@@ -77,6 +79,7 @@ class Engine{
             break;
         }
     }
+    
     }
 }
 

@@ -60,31 +60,30 @@ class Engine{
             break;
         }
         Pointer.resetaction();
+        return
     }
 
 
-    run = ()=>{
+    run = async ()=>{
         let newTime = Date.now();
         Settings.dt = (newTime - this.previousTime) / 1000;
         this.previousTime = newTime;
 
-        var event= this.input()
+        var event =  await this.input()
         
         if(event.state==false){
-        this.scenes[this.currentscene].newframe()
-        requestAnimationFrame(this.run);
-        
+        await this.scenes[this.currentscene].newframe()
+        return requestAnimationFrame(this.run);
     }else{
         switch(event.execution){
             case "engine":
-                this.engineevents(event);
-                
+                await this.engineevents(event)
             break;
             case "scene":
-                this.scenes[this.currentscene].sceneEvent(event);
+                await this.scenes[this.currentscene].sceneEvent(event);
             break;
         }
-        requestAnimationFrame(this.run);
+        return requestAnimationFrame(this.run);
     }
     
     }

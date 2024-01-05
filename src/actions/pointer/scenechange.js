@@ -36,7 +36,7 @@ export default class Scenechange{
     static listener(){
         this.#attached.forEach((obj)=>{
             if(Pointer.pos.x >= obj.pos.x && Pointer.pos.x <= obj.pos.x+obj.dim.w && Pointer.pos.y >= obj.pos.y && Pointer.pos.y <= obj.pos.y+obj.dim.h){
-                return Pointer.event={state:true,type:"scenechange",value:"get from element"}
+                return Pointer.event={state:true,type:"scenechange",call:(value)=>this.action(value),value:obj.action.value}
             }
         })
     }

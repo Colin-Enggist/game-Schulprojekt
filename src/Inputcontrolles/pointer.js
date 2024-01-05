@@ -14,7 +14,7 @@ export class Pointer{
     static init(){
         this.#x =0;
         this.#y=0;
-        this.#event= {state:false,type:undefined,value:undefined};
+        this.#event= {state:false,type:undefined,call:undefined,value:undefined};
         window.addEventListener('mousemove', this.mousemove);
         window.addEventListener('mousedown', this.mousedown);
         window.addEventListener('mouseup', this.mouseup);
@@ -44,6 +44,6 @@ export class Pointer{
     }
 
     static resetaction(){
-        this.event = {state:false,type:undefined,value:undefined};
+        this.event = {state:false,type:undefined,call:undefined,value:undefined};
     }
 }

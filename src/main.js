@@ -38,9 +38,9 @@ class Engine{
     input(){
         Pointer.pos
         Pointer.event
-        console.log(Pointer.pos,Pointer.event)
+        
         if(Pointer.event.state){
-            return {state:true, type:Pointer.event.type}
+            return Pointer.event
         }else{return {state:false,type:undefined}}
     }
 
@@ -51,6 +51,7 @@ class Engine{
         this.previousTime = newTime;
 
         var event= this.input()
+        console.log(event);
 
         if(event.state==false){
         this.scenes[this.currentscene].update()

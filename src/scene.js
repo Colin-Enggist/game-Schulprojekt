@@ -23,15 +23,15 @@ export class Scene{
         this.ent=[[],[],[]];
 
         await data.ui.forEach((item)=>{
-          this.ent[0].push(new Element(item.type,item.name,item.pos,item.actions,item.display));
+          this.ent[0].push(new Element(item.type,item.name,item.pos,item.dim,item.actions,item.display));
         })
 
         await data.bg.forEach((item)=>{
-            this.ent[2].push(new Element(item.type,item.name,item.pos,item.actions,item.display))
+            this.ent[2].push(new Element(item.type,item.name,item.pos,item.dim,item.actions,item.display))
         })
 
         await data.entitys.forEach((item)=>{
-            this.ent[1].push(new Element(item.type,item.name,item.pos,item.actions,item.display))})
+            this.ent[1].push(new Element(item.type,item.name,item.pos,item.dim,item.actions,item.display))})
 
         return
     }

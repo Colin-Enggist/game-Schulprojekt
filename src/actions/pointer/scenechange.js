@@ -9,6 +9,7 @@ export default class Scenechange{
     static add(obj){
         this.#attached.push(obj);
         this.#index.push(obj.name);
+        console.log(obj)
         return
     }
 
@@ -34,7 +35,7 @@ export default class Scenechange{
 
     static listener(){
         this.#attached.forEach((obj)=>{
-            if(Pointer.pos.x >= obj.x1 && Pointer.pos.x <= obj.x2 && Pointer.pos.y >= obj.y1 && Pointer.pos.y <= obj.y2){
+            if(Pointer.pos.x >= obj.pos.x && Pointer.pos.x <= obj.pos.x+obj.dim.w && Pointer.pos.y >= obj.pos.y && Pointer.pos.y <= obj.pos.y+obj.dim.h){
                 return Pointer.event={state:true,type:"scenechange",value:"get from element"}
             }
         })

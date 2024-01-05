@@ -8,9 +8,9 @@
        ],
        "ui":[
         {
-        "type":"button", "name":"Snakebutton", "pos":{"x":"150","y":"520"},
+        "type":"button", "name":"Snakebutton", "pos":{"x":"150","y":"520"},"dim":{"w":"130","h":"60"},
         "actions":[
-            
+            {"type":"scenechange","value":"snake"}
         ],
         "display":[
             {"type":"rect","x":"0","y":"0","w":"130", "h":"60","color":"black"},
@@ -18,7 +18,7 @@
         ]
         },
         {
-            "type":"button", "name":"rockpaperscissorbutton","pos":{"x":"750","y":"520"},
+            "type":"button", "name":"rockpaperscissorbutton","pos":{"x":"750","y":"520"},"dim":{"w":"200","h":"60"},
             "actions":[
 
             ],
@@ -28,7 +28,7 @@
             ]
         },
         {
-            "type":"text","name":"titlescreen","pos":{"x":"280","y":"200"},
+            "type":"text","name":"titlescreen","pos":{"x":"280","y":"200"},"dim":{"w":"1080","h":"100"},
             "actions":[
 
             ],
@@ -38,7 +38,7 @@
         }
         ],
         "bg":[
-            {"type":"color","name":"bg","pos":{"x":"0","y":"0"},
+            {"type":"color","name":"bg","pos":{"x":"0","y":"0"},"dim":{"w":"1080","h":"720"},
             "display":[
                 {"type":"rect","x":"0","y":"0","w":"1080", "h":"720","color":"lightgrey"}
                 ]

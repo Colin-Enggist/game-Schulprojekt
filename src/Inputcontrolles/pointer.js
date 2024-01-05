@@ -5,6 +5,9 @@ export class Pointer{
     static #y;
 
     static #event;
+    static actiontypes=[
+        {type:"scenechange",eventlistener:"mousedown",getattached:(obj)=>Scenechange.add(obj)}
+    ];
 
     static #relation = document.getElementById('canvas').getBoundingClientRect();
 

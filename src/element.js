@@ -1,12 +1,14 @@
 // Class managing displaying things on to the canvases and making them objects
 
 import { Settings } from "./settings.js";
+import { Pointer } from "./Inputcontrolles/pointer.js";
 
 export class Element {
-  constructor(type, name,pos, actions, arr) {
+  constructor(type, name,pos,dim, actions, arr) {
     this.type = type;
     this.name = name;
     this.pos = pos;
+    this.dim = dim;
     this.actions = actions; //need to implement boot up method
     this.display = []; // will be loaded in init function
     this.init(arr);
@@ -14,7 +16,8 @@ export class Element {
 
   init(arr) {
     //preloading each display array element for faster loading
-      this.loadDisplay(arr)
+     this.loadDisplay(arr)
+     return this.loadaction()
   }
 
   loadDisplay(arr){
@@ -59,9 +62,27 @@ export class Element {
           comp: el.comp || undefined,
         };
         //pushing it in the array
-        return (this.display.push(obj),console.log(obj));
+        return this.display.push(obj);
       }
     });
+  }
+
+  loadaction(){
+    Pointer.actiontypes.forEach((el)=>{
+      this.actions?.forEach((ac)=>{
+        if(el.type === ac.type){
+          el.getattached({
+            type:this.type,
+            name:this.name,
+            pos:this.pos,
+            dim:this.dim,
+            action:ac,
+            display:this.display,
+          });
+          return console.log("attached");
+        }
+      })
+    })
   }
   
 }

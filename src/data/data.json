@@ -8,37 +8,37 @@
        ],
        "ui":[
         {
-        "type":"button", "name":"Snakebutton", 
+        "type":"button", "name":"Snakebutton", "pos":{"x":"150","y":"520"},
         "actions":[
-
+            
         ],
         "display":[
-            {"type":"rect","x":"150","y":"520","w":"130", "h":"60","color":"black"},
-            {"type":"text","x":"170","y":"560","size":"25px","text":"Snake","maxw":"100"}
+            {"type":"rect","x":"0","y":"0","w":"130", "h":"60","color":"black"},
+            {"type":"text","x":"20","y":"40","size":"25px","text":"Snake","maxw":"100"}
         ]
         },
         {
-            "type":"button", "name":"rockpaperscissorbutton",
+            "type":"button", "name":"rockpaperscissorbutton","pos":{"x":"750","y":"520"},
             "actions":[
 
             ],
             "display":[
-                {"type":"rect","x":"750","y":"520","w":"200", "h":"60","color":"black"},
-                {"type":"text","x":"760","y":"557","size":"20px","text":"RockPaperScissors", "maxw":"185"}
+                {"type":"rect","x":"0","y":"0","w":"200", "h":"60","color":"black"},
+                {"type":"text","x":"10","y":"37","size":"20px","text":"RockPaperScissors", "maxw":"185"}
             ]
         },
         {
-            "type":"text","name":"titlescreen",
+            "type":"text","name":"titlescreen","pos":{"x":"280","y":"200"},
             "actions":[
 
             ],
             "display":[
-                {"type":"text","x":"280","y":"200","size":"80px","text":"Choose Game","maxw":"1080", "color":"black"}
+                {"type":"text","x":"0","y":"0","size":"80px","text":"Choose Game","maxw":"1080", "color":"black"}
             ]
         }
         ],
         "bg":[
-            {"type":"color","name":"bg",
+            {"type":"color","name":"bg","pos":{"x":"0","y":"0"},
             "display":[
                 {"type":"rect","x":"0","y":"0","w":"1080", "h":"720","color":"lightgrey"}
                 ]

@@ -3,9 +3,10 @@
 import { Settings } from "./settings.js";
 
 export class Element {
-  constructor(type, name, actions, arr) {
+  constructor(type, name,pos, actions, arr) {
     this.type = type;
     this.name = name;
+    this.pos = pos;
     this.actions = actions; //need to implement boot up method
     this.display = []; // will be loaded in init function
     this.init(arr);
@@ -27,8 +28,8 @@ export class Element {
         let obj = {
           type: el.type,
           img: image,
-          x: el.x * Settings.screenScaling,
-          y: el.y * Settings.screenScaling,
+          x: (parseFloat(el.x) + parseFloat(this.pos.x)) * Settings.screenScaling,
+          y: (parseFloat(el.y) + parseFloat(this.pos.y)) * Settings.screenScaling,
           w: el.w * Settings.screenScaling,
           maxw: el.maxw? el.maxw * Settings.screenScaling: undefined,
           h: (el.w / image.width) * image.height * Settings.screenScaling,
@@ -45,8 +46,8 @@ export class Element {
         //creating normal object
         let obj = {
           type: el.type,
-          x: el.x * Settings.screenScaling,
-          y: el.y * Settings.screenScaling,
+          x: (parseFloat(el.x) + parseFloat(this.pos.x)) * Settings.screenScaling,
+          y: (parseFloat(el.y) + parseFloat(this.pos.y)) * Settings.screenScaling,
           w: el.w? el.w * Settings.screenScaling: undefined,
           maxw: el.maxw? el.maxw * Settings.screenScaling: undefined,
           h: el.h? el.h * Settings.screenScaling : undefined,
@@ -58,7 +59,7 @@ export class Element {
           comp: el.comp || undefined,
         };
         //pushing it in the array
-        return this.display.push(obj);
+        return (this.display.push(obj),console.log(obj));
       }
     });
   }

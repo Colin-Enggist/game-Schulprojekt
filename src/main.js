@@ -39,9 +39,9 @@ class Engine{
         Pointer.pos
         Pointer.event
         console.log(Pointer.pos,Pointer.event)
-        if(Pointer.event){
-            return true
-        }else{return false}
+        if(Pointer.event.state){
+            return {state:true, type:Pointer.event.type}
+        }else{return {state:false,type:undefined}}
     }
 
 
@@ -52,7 +52,7 @@ class Engine{
 
         var event= this.input()
 
-        if(event==false){
+        if(event.state==false){
         this.scenes[this.currentscene].update()
         requestAnimationFrame(this.run);
     }

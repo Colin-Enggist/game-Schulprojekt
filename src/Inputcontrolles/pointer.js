@@ -1,12 +1,14 @@
 // Class to manage Pointer controlles also made with the help from source video
 import Scenechange from "../actions/pointer/scenechange.js";
+import Rockpaperscissor from "../actions/pointer/rockpaperscissor.js";
 export class Pointer{
     static #x;
     static #y;
 
     static #event;
     static actiontypes=[
-        {type:"scenechange",eventlistener:"mousedown",getattached:(obj)=>Scenechange.add(obj),resetattached:()=>Scenechange.removeAll()}
+        {type:"scenechange",eventlistener:"mousedown",getattached:(obj)=>Scenechange.add(obj),resetattached:()=>Scenechange.removeAll()},
+        {type:"rockpaperscissor",eventlistener:"mousedown",getattached:(obj)=>Rockpaperscissor.add(obj),resetattached:()=>{Rockpaperscissor.removeAll()}}
     ];
 
     static #relation = document.getElementById('canvas').getBoundingClientRect();
@@ -35,7 +37,7 @@ export class Pointer{
         this.pos = {x:e.clientX-this.#relation.left, y:e.clientY-this.#relation.top}
 
         Scenechange.listener();
-        
+        Rockpaperscissor.listener();
     }
 
     static mouseup = (e) =>{

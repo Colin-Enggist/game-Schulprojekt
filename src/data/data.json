@@ -113,7 +113,7 @@
                 },
             {"type":"button", "name":"rock","pos":{"x":"460","y":"465"},"dim":{"w":"200","h":"200"},
             "actions":[
-
+                {"type":"rockpaperscissor","value":"rock"}
             ],
         "display":[
             {"type":"image", "x":"0", "y":"0","w":"170","url":"./../assets/rockpaperscissor/rock.png"},
@@ -122,7 +122,7 @@
         },
         {"type":"button", "name":"paper","pos":{"x":"100","y":"315"},"dim":{"w":"200","h":"200"},
             "actions":[
-
+                {"type":"rockpaperscissor","value":"paper"}
             ],
         "display":[
             {"type":"image", "x":"0", "y":"0","w":"160","url":"./../assets/rockpaperscissor/paper.png"},
@@ -131,7 +131,7 @@
         },
         {"type":"button", "name":"scissor", "pos":{"x":"810","y":"315"},"dim":{"w":"200","h":"200"},
             "actions":[
-
+                {"type":"rockpaperscissor","value":"scissor"}
             ],
         "display":[
             {"type":"image", "x":"0", "y":"0","w":"170","url":"./../assets/rockpaperscissor/scissor.png"},

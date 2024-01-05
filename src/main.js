@@ -25,7 +25,7 @@ class Engine{
         })})
 
        // wait until every scene is loaded and display first frame
-        await this.loadscenes("boot")
+        this.loadscenes("boot")
 
         // return with starting the loop
         return this.run()
@@ -34,7 +34,8 @@ class Engine{
     loadscenes(sceneIndex){
         if(sceneIndex === "boot"){
             this.currentscene = 0;
-            return  this.scenes[this.currentscene].setup();
+            this.scenes[this.currentscene].setup()
+            return 
         }else{
             this.currentscene = this.reference.indexOf(sceneIndex);
             this.currentscene === -1? console.log("Error: scene not found") : this.scenes[this.currentscene].setup();
@@ -55,13 +56,14 @@ class Engine{
         switch(event.type){
             case "scenechange":
                 this.loadscenes(event.value);
+                Pointer.resetaction();
                 requestAnimationFrame(this.run);
             break;
         }
     }
 
 
-    run =async ()=>{
+    run = ()=>{
         let newTime = Date.now();
         Settings.dt = (newTime - this.previousTime) / 1000;
         this.previousTime = newTime;

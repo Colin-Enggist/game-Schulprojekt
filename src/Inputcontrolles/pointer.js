@@ -6,7 +6,7 @@ export class Pointer{
 
     static #event;
     static actiontypes=[
-        {type:"scenechange",eventlistener:"mousedown",getattached:(obj)=>Scenechange.add(obj)}
+        {type:"scenechange",eventlistener:"mousedown",getattached:(obj)=>Scenechange.add(obj),resetattached:()=>Scenechange.removeAll()}
     ];
 
     static #relation = document.getElementById('canvas').getBoundingClientRect();

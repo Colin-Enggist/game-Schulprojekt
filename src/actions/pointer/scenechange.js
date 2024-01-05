@@ -9,7 +9,6 @@ export default class Scenechange{
     static add(obj){
         this.#attached.push(obj);
         this.#index.push(obj.name);
-        console.log(obj)
         return
     }
 
@@ -22,8 +21,8 @@ export default class Scenechange{
     }
 
     static removeAll(){
-        this.#attached.splice(0,this.#attached.length());
-        this.#index.splice(0,this.#index.length());
+        this.#attached.splice(0,this.#attached.length);
+        this.#index.splice(0,this.#index.length);
         return
     }
 

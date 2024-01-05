@@ -17,15 +17,15 @@ class Screen{
     }
 
     draw(arr) {
-        arr.forEach((el) => {
+        arr.forEach(async(el) => {
           if (el.composition) {
             this.ctx.globalCompositeOperation = el.comp;
           }
           switch (el.type) {
             case "image":
-              el.img.onload = () => {
-                this.ctx.drawImage(el.img, el.x, el.y, el.w, el.h);
-              };
+                el.img.onload =  () => {
+                  this.ctx.drawImage(el.img, el.x, el.y, el.w, el.h);
+                };
               break;
             case "rect":
               this.ctx.fillStyle = el.color;

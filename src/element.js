@@ -79,7 +79,7 @@ export class Element {
             action:ac,
             display:this.display,
           });
-          return console.log("attached");
+          return
         }
       })
     })

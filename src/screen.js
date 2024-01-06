@@ -21,7 +21,7 @@ class Screen {
   async draw(arr) {
     try{
       //trying something with arr.map()
-
+      
       // render with return of the promise
         const render= (el)=>{
           if (el.composition) {
@@ -68,7 +68,6 @@ class Screen {
             }
           })
         }
-      
         //waiting for all promises from render on all array elements
       await Promise.all(arr.map(render));
 

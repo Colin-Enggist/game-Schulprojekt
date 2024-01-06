@@ -38,7 +38,6 @@ export class Scene{
         .then(res())
         
         return 
-        
     }
 
     static async displayEl(res){
@@ -52,10 +51,12 @@ export class Scene{
         
         const DisplayUi = await new Promise((resolve)=>{
             Elements.ui.forEach((el)=>{ui.draw(el.display)});
+            //need to work on the draw resolve
             return resolve()
         })
         const DisplayBg = await new Promise((resolve)=>{
             Elements.bg.forEach((el)=>{bg.draw(el.display)});
+            //need to work on the draw resolve
             return resolve()
         })
 

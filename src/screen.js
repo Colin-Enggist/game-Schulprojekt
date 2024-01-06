@@ -62,7 +62,7 @@ class Screen {
         });
       };
       //waiting for all promises from render on all array elements
-      await Promise.all(arr.map(render));
+      await Promise.all(arr.map(render))
     } catch (err) {
       console.log(err);
     }

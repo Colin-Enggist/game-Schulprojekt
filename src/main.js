@@ -2,10 +2,9 @@
 
 import { Pointer } from "./Inputcontrolles/pointer.js";
 import {Scene} from "./scene.js";
-import { Settings } from "./settings.js";
+import {Settings} from "./settings.js";
 
 class Engine{
-    
     constructor(){     
         this.boot() 
     }

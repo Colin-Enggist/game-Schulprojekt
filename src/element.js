@@ -31,6 +31,7 @@ export class Element {
         let obj = {
           type: el.type,
           img: image,
+          url: el.url,
           x: (parseFloat(el.x) + parseFloat(this.pos.x)) * Settings.screenScaling,
           y: (parseFloat(el.y) + parseFloat(this.pos.y)) * Settings.screenScaling,
           w: el.w * Settings.screenScaling,

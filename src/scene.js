@@ -31,8 +31,9 @@ export class Scene{
         Elements.bg.forEach((el)=>{bg.draw(el.display)})
     }
 
-    static newframe(){
+    static newframe(res){ 
        Elements.main.forEach((el)=>{main.draw(el.display)})
+       return res()
     }
 
    /* static removeEnt(screennumb,elName){

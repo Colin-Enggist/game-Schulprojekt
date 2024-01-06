@@ -18,10 +18,7 @@ class Engine{
         .then(Pointer.init())
         .then(()=>{
             this.reference=Settings.data.index
-            this.scenes=[];
-            Settings.data.scenes.forEach((scene)=>{
-            this.scenes.push(new Scene(scene));
-        })})
+            })
 
        // wait until every scene is loaded and display first frame
         this.loadscenes("boot")
@@ -33,7 +30,7 @@ class Engine{
     loadscenes(sceneIndex){
         if(sceneIndex === "boot"){
             this.currentscene = 0;
-            this.scenes[this.currentscene].setup()
+            Scene.setup(Settings.data.scenes[this.currentscene])
             return 
         }else{
             this.currentscene = this.reference.indexOf(sceneIndex);

@@ -37,7 +37,6 @@ export class Elements {
     this.populate(el, "ui");
     this.populate(el, "main");
     this.populate(el, "bg");
-    console.log(this.#bg, this.#main, this.#ui);
   }
 
   static populate(data, destination) {

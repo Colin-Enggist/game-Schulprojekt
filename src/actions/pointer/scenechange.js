@@ -1,6 +1,7 @@
 //class to attach and listen for an event to occur
 import { Pointer } from "../../Inputcontrolles/pointer.js";
 import { Settings } from "../../settings.js";
+import { Scene } from "../../scene.js";
 
 export default class Scenechange {
   static #attached = [];
@@ -27,7 +28,11 @@ export default class Scenechange {
     return;
   }
 
-  static action() {}
+  static action(resolve) {
+    Scene.setup(Settings.data.scenes[2])
+    Pointer.resetaction()
+    return resolve()
+  }
 
   static listener() {
     this.#attached.forEach((obj) => {

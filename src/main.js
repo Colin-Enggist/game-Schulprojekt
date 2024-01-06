@@ -21,48 +21,23 @@ class Engine {
       .then(() => {
         this.reference = Settings.data.index;
       });
-
-    this.loadscenes("boot");
-
+      const sceneReady= await new Promise((resolve)=>{
+        Scene.setup(Settings.data.scenes[0],resolve);
+      })
+      
+      await Promise.all([sceneReady]).then(this.run())
     // return with starting the loop
-    return this.run();
-  }
-
-  loadscenes(sceneIndex) {
-    //loading a new scene
-    if (sceneIndex === "boot") {
-      this.currentscene = 0;
-      Scene.setup(Settings.data.scenes[this.currentscene]);
-      return;
-    } else {
-      this.currentscene = this.reference.indexOf(sceneIndex);
-      this.currentscene === -1
-        ? console.log("Error: scene not found")
-        : Scene.setup(Settings.data.sences[this.currentscene]);
-      return;
-    }
+    return 
   }
 
   input() {
     Pointer.pos;
     Pointer.event;
-
     if (Pointer.event.state) {
       return Pointer.event;
     } else {
       return { state: false, type: undefined };
     }
-  }
-
-  engineevents(event) {
-    switch (event.type) {
-      case "scenechange":
-        this.loadscenes(event.value);
-
-        break;
-    }
-    Pointer.resetaction();
-    return;
   }
 
   run = async () => {
@@ -79,9 +54,9 @@ class Engine {
       const eventpromise = await new Promise((resolve) => {
         var event = this.input();
         if (event.state == false) {
-          resolve();
+          return resolve();
         } else {
-          event.action(resolve)
+          return event.call(resolve)
         }
       });
       //Promise for drawing and displaying everything will be added soon

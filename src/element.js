@@ -69,11 +69,11 @@ export class Elements {
       //building everything from item.action
       let actionbuild= []
       //looping through action array
-      item.action?.forEach((el)=>{
+      item.actions?.forEach((el)=>{
         // checking if any Pointeractiontypes match
         Pointer.actiontypes.map((check) => {
           if (check.type === el.type) {
-            check.getattached({
+            return check.getattached({
               type: item.type,
               name: item.name,
               pos: item.pos,
@@ -110,5 +110,12 @@ export class Elements {
         data.bg.map((el) => this.add(el, "bg"));
         break;
     }
+  }
+
+  static clearAll(){
+    this.#ui.splice(0,this.#ui.length)
+    this.#bg.splice(0,this.#bg.length)
+    this.#main.splice(0,this.#main.length)
+    return
   }
 }

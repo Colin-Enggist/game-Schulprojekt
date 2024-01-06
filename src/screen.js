@@ -19,62 +19,53 @@ class Screen {
   }
 
   async draw(arr) {
-    try{
-      //trying something with arr.map()
-      
+    try {
       // render with return of the promise
-        const render= (el)=>{
-          if (el.composition) {
-            this.ctx.globalCompositeOperation = el.comp;
-          }
-          return new Promise((resolve,reject)=>{
-            switch (el.type) {
-              case "image":
-                if(el.img.completed){
-                  this.ctx.drawImage(el.img, el.x, el.y, el.w, el.h);
-                  return resolve()
-                }else{
-                  let image = new Image();
-                  image.src = el.url
-                  image.onload = () => {
-                    this.ctx.drawImage(image, el.x, el.y, el.w, el.h);
-                    return resolve()
-                  };
-                }
-                break;
-              case "rect":
-                this.ctx.fillStyle = el.color;
-                this.ctx.fillRect(el.x, el.y, el.w, el.h, el.color);
-                resolve()
-                break;
-              case "circle":
-                this.ctx.beginPath();
-                this.ctx.arc(el.x, el.y, el.r, 0, 2 * Math.PI);
-                this.ctx.fillStyle = el.color;
-                this.ctx.fill();
-                resolve()
-                break;
-              case "text":
-                this.ctx.fillStyle = "white";
-                this.ctx.fillStyle = el.color;
-                this.ctx.font = el.size + " helvetica";
-                this.ctx.fillText(el.text, el.x, el.y, el.maxw);
-                resolve()
-                break;
-                default:
-                  console.log("not a canvas object")
-                  reject()
-                break;
-            }
-          })
+      const render = (el) => {
+        if (el.composition) {
+          this.ctx.globalCompositeOperation = el.comp;
         }
-        //waiting for all promises from render on all array elements
+        return new Promise((resolve, reject) => {
+          switch (el.type) {
+            case "image":
+              let image = new Image();
+              image.src = el.img;
+              image.onload = () => {
+                this.ctx.drawImage(image, el.x, el.y, el.w, el.h);
+                return resolve();
+              };
+              break;
+            case "rect":
+              this.ctx.fillStyle = el.color;
+              this.ctx.fillRect(el.x, el.y, el.w, el.h, el.color);
+              resolve();
+              break;
+            case "circle":
+              this.ctx.beginPath();
+              this.ctx.arc(el.x, el.y, el.r, 0, 2 * Math.PI);
+              this.ctx.fillStyle = el.color;
+              this.ctx.fill();
+              resolve();
+              break;
+            case "text":
+              this.ctx.fillStyle = "white";
+              this.ctx.fillStyle = el.color;
+              this.ctx.font = el.size + " helvetica";
+              this.ctx.fillText(el.text, el.x, el.y, el.maxw);
+              resolve();
+              break;
+            default:
+              console.log("not a canvas object");
+              reject();
+              break;
+          }
+        });
+      };
+      //waiting for all promises from render on all array elements
       await Promise.all(arr.map(render));
-
-    }catch(err){
+    } catch (err) {
       console.log(err);
     }
-    
   }
 
   clear(x, y, w, h) {

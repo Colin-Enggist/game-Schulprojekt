@@ -3,6 +3,7 @@ import { Pointer } from "../../Inputcontrolles/pointer.js";
 import { Settings } from "../../settings.js";
 import { Scene } from "../../scene.js";
 import { Elements } from "../../element.js";
+import { main } from "../../screen.js";
 
 export default class Rockpaperscissor {
   static #attached = [];
@@ -31,28 +32,65 @@ export default class Rockpaperscissor {
 
   static async action(resolve) {
     const target = Pointer.event.value;
-    const data=[];
+    const data={
+      entitys:[]
+    };
+
     await new Promise((resolve)=>{
+      //get player figure
+      
+      var s = Settings.data.index.indexOf('rockpaperscissor')
+      var i = Settings.data.scenes[s].entitys.findIndex((item)=>item.name===target);
+
+      data.entitys.push(Settings.data.scenes[s].entitys[i])
+      data.entitys[0].pos= {x:"150", y:"315"}
+
+      //get Com figure
+
+      const comFigure=()=>{
+        // I know that com has higher chance of winnig
+
+        let rng = Math.floor(Math.random()* 3 + 1)
+        let opt= ['rock','paper','scissor']
+        var d = opt.indexOf(target)
+        opt.splice(d,1);
+
+        // some measures against the better ods for the com
+        if(rng > opt.length){
+          var rnagain= Math.floor(Math.random()*2+1)
+          console.log("test")
+          return opt[rnagain-1]
+        }else{
+          return opt[rng-1]
+        }
+      }
+      var co= comFigure()
+      var c = Settings.data.scenes[s].entitys.findIndex((item)=>item.name===co);
+      data.entitys.push(Settings.data.scenes[s].entitys[c])
+      data.entitys[1].pos= {x:"710", y:"315"}
+      console.log(data.entitys[1])
       
       
-      var i = Elements.main.findIndex((item)=>item.name===target);
-
-      data.push(Elements.main[i])
-
       
-
+    
+      //clear Elements.main
       Elements.clearMain();
       
-      Elements.add(data[0],"main")
+      // Populate Elements.main again
+      Elements.populate(data,"main")
 
+      //Reset event
       Pointer.resetaction();
-
+      
+      // Update screen
       Scene.update(resolve)
       
       //resolve()
     })
     const phaseOne= await new Promise((resolve)=>{
+      Pointer.resetaction();
 
+      Scene.update(resolve)
       Scene.update(resolve)
     })
      

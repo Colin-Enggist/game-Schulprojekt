@@ -60,14 +60,15 @@ class Engine {
         }
       });
       //Promise for drawing and displaying everything will be added soon
-      const displaypromise = await new Promise((resolve)=>{
-            Scene.newframe(resolve)
-      })
+      
 
       // Waiting for all Promises to be fullfilled before starting a new loop
-      await Promise.all([timePromise, eventpromise,displaypromise]).then(() => {
-        return requestAnimationFrame(this.run);
-      });
+      await Promise.all([timePromise, eventpromise])
+      .then(() => {
+        new Promise((resolve)=>{
+          Scene.newframe(resolve)
+        }).then(()=>{return requestAnimationFrame(this.run);})
+      })
     } catch (err) {
       console.log(err);
     }

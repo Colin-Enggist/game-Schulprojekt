@@ -42,7 +42,6 @@ class Engine {
 
   run = async () => {
     try {
-        console.log("run")
     // promise for every function regarding setting the new time
       const timePromise = await new Promise((resolve) => {
         let newTime = Date.now();

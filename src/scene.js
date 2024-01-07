@@ -29,8 +29,7 @@ export class Scene{
         })
 
         const displayed= await new Promise((resolve)=>{
-            this.displayEl(resolve)
-            
+            this.displayEl(resolve) // BUUUG resolve comes before elements are actually displayed
         })
 
         
@@ -50,23 +49,24 @@ export class Scene{
         })
         
         const DisplayUi = await new Promise((resolve)=>{
-            Elements.ui.forEach((el)=>{ui.draw(el.display)});
+            ui.draw(Elements.ui)
             //need to work on the draw resolve
             return resolve()
         })
+
         const DisplayBg = await new Promise((resolve)=>{
-            Elements.bg.forEach((el)=>{bg.draw(el.display)});
+            bg.draw(Elements.bg)
+            
             //need to work on the draw resolve
             return resolve()
         })
 
         await Promise.all([cleared, DisplayUi, DisplayBg])
         .then(res())
-        
     }
 
     static newframe(res){ 
-       Elements.main.forEach((el)=>{main.draw(el.display)})
+       main.draw(Elements.main)
        return res()
     }
 

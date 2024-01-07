@@ -21,11 +21,10 @@ class Engine {
       .then(() => {
         this.reference = Settings.data.index;
       });
-      const sceneReady= await new Promise((resolve)=>{
-        Scene.setup(Settings.data.scenes[0],resolve);
-      })
+      await new Promise((resolve)=>{
+        Scene.setup(Settings.data.scenes[2],resolve);
+      }).then(this.run)
       
-      await Promise.all([sceneReady]).then(this.run())
     // return with starting the loop
     return 
   }

@@ -117,7 +117,7 @@
             ],
         "display":[
             {"type":"image", "x":"0", "y":"0","w":"170","url":"./../assets/rockpaperscissor/rock.png"},
-            {"type":"circle", "x":"80", "y":"95", "r":"100","color":"white", "composition":true, "comp":"source-over"}
+            {"type":"circle", "x":"80", "y":"80", "r":"100","color":"white", "composition":true, "comp":"destination-over"}
         ]
         },
         {"type":"button", "name":"paper","pos":{"x":"100","y":"315"},"dim":{"w":"200","h":"200"},
@@ -126,7 +126,7 @@
             ],
         "display":[
             {"type":"image", "x":"0", "y":"0","w":"160","url":"./../assets/rockpaperscissor/paper.png"},
-            {"type":"circle", "x":"90", "y":"85", "r":"100","color":"white", "composition":true, "comp":"source-over"}
+            {"type":"circle", "x":"90", "y":"85", "r":"100","color":"white", "composition":true, "comp":"destination-over"}
         ]
         },
         {"type":"button", "name":"scissor", "pos":{"x":"810","y":"315"},"dim":{"w":"200","h":"200"},
@@ -135,7 +135,7 @@
             ],
         "display":[
             {"type":"image", "x":"0", "y":"0","w":"170","url":"./../assets/rockpaperscissor/scissor.png"},
-            {"type":"circle", "x":"70", "y":"85", "r":"100","color":"white", "composition":true, "comp":"source-over"}
+            {"type":"circle", "x":"70", "y":"85", "r":"100","color":"white", "composition":true, "comp":"destination-over"}
         ]
         }
         ],

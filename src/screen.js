@@ -47,7 +47,7 @@ class Screen {
             let image = promises[1];
             switch (el.type) {
               case "image":
-                this.ctx.drawImage(image, el.x, el.y, el.w, el.h);
+                this.ctx.drawImage(image, el.x, el.y, el.w, (el.w / image.width )*image.height);
                 break;
               case "rect":
                 this.ctx.fillStyle = el.color;

@@ -31,16 +31,16 @@ export class Scene{
         const displayed= await new Promise((resolve)=>{
             this.displayEl(resolve) // BUUUG resolve comes before elements are actually displayed
         })
-
+        
         
         await Promise.all([canvasPromise, resetPromise, loaded, displayed])
-        .then(res())
+        .then(res(),console.log("displayed"))
         
         return 
     }
 
     static async displayEl(res){
-
+        
         const cleared= await new Promise((resolve)=>{
             ui.clear(0,0,1080,720);
             main.clear(0,0,1080,720);
@@ -49,25 +49,25 @@ export class Scene{
         })
         
         const DisplayUi = await new Promise((resolve)=>{
-            ui.draw(Elements.ui)
+            ui.draw(Elements.ui, resolve)
             //need to work on the draw resolve
-            return resolve()
+            
         })
 
         const DisplayBg = await new Promise((resolve)=>{
-            bg.draw(Elements.bg)
+            bg.draw(Elements.bg, resolve)
             
             //need to work on the draw resolve
-            return resolve()
         })
 
+        
         await Promise.all([cleared, DisplayUi, DisplayBg])
-        .then(res())
+        .then(res(),console.log("displayel"))
     }
 
     static newframe(res){ 
-       main.draw(Elements.main)
-       return res()
+       main.draw(Elements.main,res)
+       
     }
 
 }

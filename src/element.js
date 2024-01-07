@@ -109,6 +109,27 @@ export class Elements {
     }
   }
 
+  static removeByName(name,screen){
+    switch (screen){
+      case "ui":
+        var index =this.#ui.findIndex((item)=>item.name == name);
+        this.#ui.splice(index,1);
+        break;
+      case "main":
+        var index =this.#main.findIndex((item)=>item.name == name);
+        this.#main.splice(index,1);
+        break;
+      case "bg":
+        var index =this.#bg.findIndex((item)=>item.name == name);
+        this.#bg.splice(index,1);
+        break;
+    }
+  }
+
+  static clearMain(){
+    this.#main.splice(0,this.#main.length)
+  }
+
   static clearAll(){
     this.#ui.splice(0,this.#ui.length)
     this.#bg.splice(0,this.#bg.length)

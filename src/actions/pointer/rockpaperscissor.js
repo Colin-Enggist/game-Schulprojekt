@@ -1,6 +1,8 @@
 //class to attach and listen for an event to occur
 import { Pointer } from "../../Inputcontrolles/pointer.js";
 import { Settings } from "../../settings.js";
+import { Scene } from "../../scene.js";
+import { Elements } from "../../element.js";
 
 export default class Rockpaperscissor {
   static #attached = [];
@@ -27,8 +29,35 @@ export default class Rockpaperscissor {
     return;
   }
 
-  static action() {
+  static async action(resolve) {
+    const target = Pointer.event.value;
+    const data=[];
+    await new Promise((resolve)=>{
+      
+      
+      var i = Elements.main.findIndex((item)=>item.name===target);
 
+      data.push(Elements.main[i])
+
+      
+
+      Elements.clearMain();
+      
+      Elements.add(data[0],"main")
+
+      Pointer.resetaction();
+
+      Scene.update(resolve)
+      
+      //resolve()
+    })
+    const phaseOne= await new Promise((resolve)=>{
+
+      Scene.update(resolve)
+    })
+     
+   
+    resolve()
   }
 
   static listener() {

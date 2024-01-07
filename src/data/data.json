@@ -99,20 +99,7 @@
     },{
         "name":"rockpaperscissor", "index":"2",
         "entitys":[
-            
-        ],
-        "ui":[
-            {
-                "type":"button", "name":"menuebtn", "pos":{"x":"0","y":"0"},"dim":{"w":"130","h":"60"},
-                "actions":[
-                    {"type":"scenechange","value":"menue"}
-                ],
-                "display":[
-                    {"type":"rect","x":"0","y":"0","w":"130", "h":"60","color":"black"},
-                    {"type":"text","x":"20","y":"40","size":"25px","text":"Menue","maxw":"100"}
-                ]
-                },
-        {"type":"button", "name":"rock","pos":{"x":"460","y":"465"},"dim":{"w":"200","h":"200"},
+            {"type":"button", "name":"rock","pos":{"x":"460","y":"465"},"dim":{"w":"200","h":"200"},
             "actions":[
                 {"type":"rockpaperscissor","value":"rock"}
             ],
@@ -139,6 +126,18 @@
             {"type":"circle", "x":"70", "y":"85", "r":"100","color":"white", "composition":true, "comp":"destination-over"}
         ]
         }
+        ],
+        "ui":[
+            {
+                "type":"button", "name":"menuebtn", "pos":{"x":"0","y":"0"},"dim":{"w":"130","h":"60"},
+                "actions":[
+                    {"type":"scenechange","value":"menue"}
+                ],
+                "display":[
+                    {"type":"rect","x":"0","y":"0","w":"130", "h":"60","color":"black"},
+                    {"type":"text","x":"20","y":"40","size":"25px","text":"Menue","maxw":"100"}
+                ]
+                }
         ],
         "bg":[
             {"type":"color","name":"bg","pos":{"x":"0","y":"0"},"dim":{"w":"1080","h":"720"},

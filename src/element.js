@@ -46,15 +46,12 @@ export class Elements {
       let displaybuild =[];
       //looping through the display array
       item.display.forEach((el)=>{
+        
         return displaybuild.push({
           type: el.type,
           img: el.url,
-          x:
-            (parseFloat(el.x) + parseFloat(item.pos.x)) *
-            Settings.screenScaling,
-          y:
-            (parseFloat(el.y) + parseFloat(item.pos.y)) *
-            Settings.screenScaling,
+          x:(parseFloat(el.x) + parseFloat(item.pos.x)) * Settings.screenScaling,
+          y:(parseFloat(el.y) + parseFloat(item.pos.y)) * Settings.screenScaling,
           w: el.w * Settings.screenScaling,
           maxw: el.maxw ? el.maxw * Settings.screenScaling : undefined,
           h: el.h ? el.h * Settings.screenScaling : undefined,
@@ -104,10 +101,10 @@ export class Elements {
         data.ui.map((el) => this.add(build(el), "ui"));
         break;
       case "main":
-        data.entitys.map((el) => this.add(el, "main"));
+        data.entitys.map((el) => this.add(build(el), "main"));
         break;
       case "bg":
-        data.bg.map((el) => this.add(el, "bg"));
+        data.bg.map((el) => this.add(build(el), "bg"));
         break;
     }
   }

@@ -11,7 +11,7 @@ export class Pointer{
         {type:"rockpaperscissor",eventlistener:"mousedown",getattached:(obj)=>Rockpaperscissor.add(obj),resetattached:()=>{Rockpaperscissor.removeAll()}}
     ];
 
-    static #relation = document.getElementById('canvas').getBoundingClientRect();
+    static #relation = document.getElementById('main').getBoundingClientRect();
 
     static init(){
         this.#x =0;

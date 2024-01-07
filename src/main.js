@@ -3,6 +3,8 @@
 import { Pointer } from "./Inputcontrolles/pointer.js";
 import { Scene } from "./scene.js";
 import { Settings } from "./settings.js";
+import { main } from "./screen.js";
+import { Elements } from "./element.js";
 
 class Engine {
   constructor() {
@@ -18,11 +20,10 @@ class Engine {
       .then((data) => (Settings.data = data))
       .then((this.previousTime = Date.now()))
       .then(Pointer.init())
-      .then(() => {
-        this.reference = Settings.data.index;
-      });
+      
+
       await new Promise((resolve)=>{
-        Scene.setup(Settings.data.scenes[2],resolve);
+        Scene.setup(Settings.data.scenes[0],resolve);
       }).then(this.run)
       
     // return with starting the loop
@@ -55,18 +56,21 @@ class Engine {
         if (event.state == false) {
           return resolve();
         } else {
+          
           return event.call(resolve)
         }
-      });
+      })
       //Promise for drawing and displaying everything will be added soon
-      
+
+      const Frame = await new Promise((resolve)=>{
+        main.draw(Elements.main,resolve)
+        //Scene.newframe(resolve)
+      })
 
       // Waiting for all Promises to be fullfilled before starting a new loop
-      await Promise.all([timePromise, eventpromise])
+      await Promise.all([timePromise, eventpromise,Frame])
       .then(() => {
-        new Promise((resolve)=>{
-          Scene.newframe(resolve)
-        }).then(()=>{return requestAnimationFrame(this.run);})
+       return requestAnimationFrame(this.run);
       })
     } catch (err) {
       console.log(err);

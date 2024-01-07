@@ -19,35 +19,43 @@ class Screen {
   }
 
   async draw(arr, resolve) {
-    for (const item of arr) {
-      for (const el of item.display) {
-        const hasComp = await new Promise((resolve) => {
-          if (el.composition) {
-            this.ctx.globalCompositeOperation = el.comp;
-            resolve();
-          } else {
-            resolve();
-          }
-        });
+    if (arr.length === 0) {
+      return resolve();
+    } else {
+      for (const item of arr) {
+        for (const el of item.display) {
+          const hasComp = await new Promise((resolve) => {
+            if (el.composition) {
+              this.ctx.globalCompositeOperation = el.comp;
+              resolve();
+            } else {
+              resolve();
+            }
+          });
 
-        const isImage = await new Promise((resolve) => {
-          if (el.type === "image") {
-            let image = new Image();
-            image.src = el.img;
-            image.onload = () => {
-              resolve(image);
-            };
-          } else {
-            resolve();
-          }
-        });
+          const isImage = await new Promise((resolve) => {
+            if (el.type === "image") {
+              let image = new Image();
+              image.src = el.img;
+              image.onload = () => {
+                resolve(image);
+              };
+            } else {
+              resolve();
+            }
+          });
 
-        await Promise.all([hasComp, isImage])
-          .then((promises) => {
+          await Promise.all([hasComp, isImage]).then((promises) => {
             let image = promises[1];
             switch (el.type) {
               case "image":
-                this.ctx.drawImage(image, el.x, el.y, el.w, (el.w / image.width )*image.height);
+                this.ctx.drawImage(
+                  image,
+                  el.x,
+                  el.y,
+                  el.w,
+                  (el.w / image.width) * image.height
+                );
                 break;
               case "rect":
                 this.ctx.fillStyle = el.color;
@@ -69,10 +77,11 @@ class Screen {
                 console.log("not a canvas object");
                 break;
             }
-          })
+          });
+        }
       }
+      return resolve();
     }
-    return resolve()
   }
 
   clear(x, y, w, h) {
@@ -85,7 +94,7 @@ class Screen {
   }
 }
 
-const main = new Screen(document.getElementById("canvas"));
+const main = new Screen(document.getElementById("main"));
 const ui = new Screen(document.getElementById("ui"));
 const bg = new Screen(document.getElementById("bg"));
 

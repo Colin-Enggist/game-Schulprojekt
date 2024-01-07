@@ -34,7 +34,7 @@ export class Scene{
         
         
         await Promise.all([canvasPromise, resetPromise, loaded, displayed])
-        .then(res(),console.log("displayed"))
+        .then(res())
         
         return 
     }
@@ -60,14 +60,18 @@ export class Scene{
             //need to work on the draw resolve
         })
 
+        const DisplayMain = await new Promise((resolve)=>{
+            main.draw(Elements.main,resolve)
+        })
+
         
-        await Promise.all([cleared, DisplayUi, DisplayBg])
-        .then(res(),console.log("displayel"))
+        await Promise.all([cleared, DisplayUi,DisplayMain, DisplayBg])
+        .then(res())
     }
 
     static newframe(res){ 
+        main.clear(0,0,1080,720);
        main.draw(Elements.main,res)
-       
     }
 
 }

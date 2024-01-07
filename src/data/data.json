@@ -4,7 +4,7 @@
     {
        "name":"menue", "index": "0",
        "entitys":[
-
+        
        ],
        "ui":[
         {
@@ -43,19 +43,20 @@
                 {"type":"rect","x":"0","y":"0","w":"1080", "h":"720","color":"lightgrey"}
                 ]
             }
-            
+
         ]
     },{
         "name":"snake", "index":"1",
         "entitys":[
-            {"type":"player", "name":"snakeHead","pos":{"x":"200","y":"300"},"dim":{"w":"30","h":"45"},
+            {
+            "type":"player", "name":"snakeHead","pos":{"x":"200","y":"300"},"dim":{"w":"30","h":"45"},
             "actions":[
 
             ],
             "display":[
                 {"type":"rect", "x":"0","y":"0","w":"30","h":"30","color":"darkblue"},
                 {"type":"circle", "x":"15", "y":"0", "r":"15","color":"darkblue"}
-                ]
+            ]
             },
             {"type":"body","name":"snakebody", "pos":{"x":"208","y":"345"},"dim":{"w":"24","h":"34"},
             "actions":[

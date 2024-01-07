@@ -29,9 +29,12 @@ export default class Scenechange {
   }
 
   static action(resolve) {
-    Scene.setup(Settings.data.scenes[2])
-    Pointer.resetaction()
-    return resolve()
+    
+    
+    let target=  Settings.data.index.indexOf(Pointer.event.value) 
+      Pointer.resetaction();
+      Scene.setup(Settings.data.scenes[target],resolve);
+
   }
 
   static listener() {

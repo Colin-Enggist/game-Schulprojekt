@@ -3,6 +3,7 @@
 import { Pointer } from "./Inputcontrolles/pointer.js";
 import { Scene } from "./scene.js";
 import { Settings } from "./settings.js";
+import { Keys } from "./Inputcontrolles/keys.js";
 import { main } from "./screen.js";
 import { Elements } from "./element.js";
 
@@ -19,7 +20,10 @@ class Engine {
       })
       .then((data) => (Settings.data = data))
       .then((this.previousTime = Date.now()))
-      .then(Pointer.init())
+      .then(()=>{
+        Pointer.init()
+        Keys.init()
+      })
       
 
       await new Promise((resolve)=>{

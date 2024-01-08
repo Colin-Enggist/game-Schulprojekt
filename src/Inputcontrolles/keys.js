@@ -1,11 +1,11 @@
 // Class to manage Pointer controlles also made with the help from source video
-
+import Snake from "../actions/keys/snake.js";
 export class Keys{
     static #input;
 
     static #event;
     static actiontypes=[
-        
+        {type:"snake",eventlistener:"keydown",getattached:(obj)=>Snake.add(obj),resetattached:()=>Snake.removeAll()},
     ];
 
 
@@ -25,6 +25,8 @@ export class Keys{
 
     static keydown = (e)=>{
         this.input= e.key
+
+        Snake.listener()
     }
 
     static keypress = (e)=>{

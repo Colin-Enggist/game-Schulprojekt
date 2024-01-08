@@ -2,6 +2,7 @@
 
 import { Settings } from "./settings.js";
 import { Pointer } from "./Inputcontrolles/pointer.js";
+import { Keys } from "./Inputcontrolles/keys.js";
 
 export class Elements {
   // gets all elemenst that the are visible in the current scene, loads them and stores them in respective arrays to their screen
@@ -69,6 +70,20 @@ export class Elements {
       item.actions?.forEach((el)=>{
         // checking if any Pointeractiontypes match
         Pointer.actiontypes.map((check) => {
+          if (check.type === el.type) {
+            return check.getattached({
+              type: item.type,
+              name: item.name,
+              pos: item.pos,
+              dim: item.dim,
+              action: el,
+              display: item.display,
+            });
+          } else {
+          }
+        });
+        // Checking if any Keysactiontypes match
+        Keys.actiontypes.map((check) => {
           if (check.type === el.type) {
             return check.getattached({
               type: item.type,

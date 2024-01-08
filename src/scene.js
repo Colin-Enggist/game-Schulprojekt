@@ -1,5 +1,6 @@
 // Controls the displayed scene and in generell the display made with the help from the source
 
+import { Keys } from "./Inputcontrolles/keys.js";
 import { Pointer } from "./Inputcontrolles/pointer.js";
 import {Elements} from "./element.js";
 import { main,ui,bg } from "./screen.js";
@@ -17,6 +18,9 @@ export class Scene{
         
         const resetPromise= await new Promise((resolve)=>{
             Pointer.actiontypes?.forEach((el)=>{
+                return el.resetattached();
+            })
+            Keys.actiontypes.forEach((el)=>{
                 return el.resetattached();
             })
             Elements.clearAll()

@@ -37,8 +37,12 @@ class Engine {
   input() {
     Pointer.pos;
     Pointer.event;
+    Keys.input;
+    Keys.event;
     if (Pointer.event.state) {
       return Pointer.event;
+    }else if(Keys.event.state){
+      return Keys.event
     } else {
       return { state: false, type: undefined };
     }

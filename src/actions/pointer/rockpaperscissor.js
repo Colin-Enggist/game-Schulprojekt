@@ -151,6 +151,7 @@ export default class Rockpaperscissor {
     //reload rockpaperscissor and reset event
     Pointer.resetaction();
     Scene.setup(Settings.data.scenes[s],resolve);
+    console.log(Settings.data.scenes[s])
    })
   }
 

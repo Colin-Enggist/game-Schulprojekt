@@ -84,7 +84,6 @@ export default class Rockpaperscissor {
       };
       compute.entitys.push(obj);
       // Populate Elements.main again
-      console.log(compute)
       Elements.populate(compute, "main");
     };
 
@@ -122,7 +121,6 @@ export default class Rockpaperscissor {
     // PhaseOne
     await new Promise((resolve)=>{
       p = getPlayerFigure();
-      console.log(p)
       //clear Elements.main
       Elements.clearMain();
       //start populating

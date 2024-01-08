@@ -83,6 +83,8 @@ export default class Rockpaperscissor {
         entitys: [],
       };
       compute.entitys.push(obj);
+      // otherwise this attached will be overloaded
+      this.removeAll();
       // Populate Elements.main again
       Elements.populate(compute, "main");
     };

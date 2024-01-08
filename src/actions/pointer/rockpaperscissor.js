@@ -3,7 +3,7 @@ import { Pointer } from "../../Inputcontrolles/pointer.js";
 import { Settings } from "../../settings.js";
 import { Scene } from "../../scene.js";
 import { Elements } from "../../element.js";
-import { ui,main,bg } from "../../screen.js";
+
 
 export default class Rockpaperscissor {
   static #attached = [];
@@ -31,6 +31,8 @@ export default class Rockpaperscissor {
   }
 
   static async action(resolve) {
+    //Use Array.slice to copy an object. this fixes the issue of changing data in Settings.data
+
     var target = Pointer.event.value;
     var s = Settings.data.index.indexOf("rockpaperscissor");
     let p;
@@ -79,8 +81,6 @@ export default class Rockpaperscissor {
         entitys: [],
       };
       compute.entitys.push(obj);
-      
-      console.log(obj)
       // Populate Elements.main again
       Elements.populate(compute, "main");
     };

@@ -3,7 +3,7 @@ import { Pointer } from "../../Inputcontrolles/pointer.js";
 import { Settings } from "../../settings.js";
 import { Scene } from "../../scene.js";
 import { Elements } from "../../element.js";
-import { main } from "../../screen.js";
+import { ui,main,bg } from "../../screen.js";
 
 export default class Rockpaperscissor {
   static #attached = [];
@@ -31,80 +31,140 @@ export default class Rockpaperscissor {
   }
 
   static async action(resolve) {
-    const target = Pointer.event.value;
-    const data={
-      entitys:[]
+    var target = Pointer.event.value;
+    var s = Settings.data.index.indexOf("rockpaperscissor");
+    let p;
+    let c;
+
+    const getPlayerFigure = () => {
+      var i = Settings.data.scenes[s].entitys.findIndex(
+        (item) => item.name === target
+      );
+
+      let compute = Settings.data.scenes[s].entitys[i];
+      compute.pos = { x: "150", y: "365" };
+      return compute
     };
 
-    await new Promise((resolve)=>{
-      //get player figure
-      
-      var s = Settings.data.index.indexOf('rockpaperscissor')
-      var i = Settings.data.scenes[s].entitys.findIndex((item)=>item.name===target);
-
-      data.entitys.push(Settings.data.scenes[s].entitys[i])
-      data.entitys[0].pos= {x:"150", y:"315"}
-
-      //get Com figure
-
-      const comFigure=()=>{
+    const getComFigure = () => {
+      const comRng = () => {
         // I know that com has higher chance of winnig
+        let rng = Math.floor(Math.random() * 3 + 1);
+        let opt = ["rock", "paper", "scissor"];
+        var d = opt.indexOf(target);
+        opt.splice(d, 1);
 
-        let rng = Math.floor(Math.random()* 3 + 1)
-        let opt= ['rock','paper','scissor']
-        var d = opt.indexOf(target)
-        opt.splice(d,1);
-
-        // some measures against the better ods for the com
-        if(rng > opt.length){
-          var rnagain= Math.floor(Math.random()*2+1)
-          console.log("test")
-          return opt[rnagain-1]
-        }else{
-          return opt[rng-1]
+        // so here are some measures to make the game more fair
+        if (rng > opt.length) {
+          var rnagain = Math.floor(Math.random() * 2 + 1);
+          return opt[rnagain - 1];
+        } else {
+          return opt[rng - 1];
         }
+      };
+      // get alll necessary data
+      var co = comRng();
+      c = Settings.data.scenes[s].entitys.findIndex(
+        (item) => item.name === co
+      );
+
+
+      let compute = Settings.data.scenes[s].entitys[c]
+      compute.pos = { x: "710", y: "365" };
+      return compute
+    };
+
+    const populateElements = (obj) => {
+      const compute = {
+        entitys: [],
+      };
+      compute.entitys.push(obj);
+      
+      console.log(obj)
+      // Populate Elements.main again
+      Elements.populate(compute, "main");
+    };
+
+    const updateDisplay = () => {
+      return new Promise((resolve) => {
+        // Update screen
+        Scene.update(resolve);
+      });
+    };
+
+    const getResult = ()=>{
+      let text ={
+        type:"text",name:"rpsresult",pos:{x:"340",y:"200"},dim:{w:"1080",h:"100"},
+            actions:[
+
+            ],
+            display:[
+                {type:"text",x:"0",y:"0",size:"80px",text:"Choose Game",maxw:"1080", color:"black"}
+            ]
       }
-      var co= comFigure()
-      var c = Settings.data.scenes[s].entitys.findIndex((item)=>item.name===co);
-      data.entitys.push(Settings.data.scenes[s].entitys[c])
-      data.entitys[1].pos= {x:"710", y:"315"}
-      console.log(data.entitys[1])
-      
-      
-      
-    
+      switch (p.name){
+        case "rock":
+          c.name == "paper"? text.display[0].text = "YOU LOSE": text.display[0].text = "YOU WIN";
+        break;
+        case "paper":
+          c.name == "scissor"? text.display[0].text = "YOU LOSE": text.display[0].text = "YOU WIN";
+        break;
+        case "scissor":
+          c.name == "rock"? text.display[0].text = "YOU LOSE": text.display[0].text = "YOU WIN";
+        break;
+      }
+      return text
+    }
+
+    // PhaseOne
+    await new Promise((resolve)=>{
+      p = getPlayerFigure();
       //clear Elements.main
       Elements.clearMain();
-      
-      // Populate Elements.main again
-      Elements.populate(data,"main")
-
-      //Reset event
-      Pointer.resetaction();
-      
-      // Update screen
-      Scene.update(resolve)
-      
-      //resolve()
+      //start populating
+      populateElements(p);
+      updateDisplay()
+      setTimeout(()=>{
+        resolve()}
+        ,1000)
     })
-    const phaseOne= await new Promise((resolve)=>{
-      Pointer.resetaction();
 
-      Scene.update(resolve)
-      Scene.update(resolve)
+
+    //Phasetwo
+    await new Promise((resolve)=>{
+      c = getComFigure();
+      populateElements(c)
+      updateDisplay()
+      resolve()
     })
-     
-   
-    resolve()
+
+    // end of game and Result
+    await new Promise((resolve)=>{
+      var t = getResult();
+      populateElements(t)
+      updateDisplay()
+      setTimeout(()=>{
+        resolve()}
+        ,1000)
+    })
+   .then(()=>{
+    //reload rockpaperscissor and reset event
+    Pointer.resetaction();
+    Scene.setup(Settings.data.scenes[s],resolve);
+   })
   }
 
   static listener() {
     this.#attached.forEach((obj) => {
       if (
         Pointer.pos.x >= parseFloat(obj.pos.x) * Settings.screenScaling &&
-        Pointer.pos.x <= (parseFloat(obj.pos.x) + parseFloat(obj.dim.w)) * Settings.screenScaling &&
+        Pointer.pos.x <=
+          (parseFloat(obj.pos.x) + parseFloat(obj.dim.w)) *
+            Settings.screenScaling &&
         Pointer.pos.y >= parseFloat(obj.pos.y) * Settings.screenScaling &&
-        Pointer.pos.y <= (parseFloat(obj.pos.y) + parseFloat(obj.dim.h)) * Settings.screenScaling
+        Pointer.pos.y <=
+          (parseFloat(obj.pos.y) + parseFloat(obj.dim.h)) *
+            Settings.screenScaling
       ) {
         return (Pointer.event = {
           state: true,

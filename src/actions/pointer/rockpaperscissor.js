@@ -31,7 +31,9 @@ export default class Rockpaperscissor {
   }
 
   static async action(resolve) {
-    //Use Array.slice to copy an object. this fixes the issue of changing data in Settings.data
+    //Use an array copy to not change original data in Settings.data.scenes. Yes I tested it, the only solution to copy Objects without reference is by using JSON.parse and Json.stringify ressource: https://dev.to/jorge_rockr/the-problem-with-array-cloning-in-javascript-and-how-to-solve-it-24gc
+
+    const arr = JSON.parse(JSON.stringify(Settings.data.scenes))
 
     var target = Pointer.event.value;
     var s = Settings.data.index.indexOf("rockpaperscissor");
@@ -39,11 +41,11 @@ export default class Rockpaperscissor {
     let c;
 
     const getPlayerFigure = () => {
-      var i = Settings.data.scenes[s].entitys.findIndex(
+      var i = arr[s].entitys.findIndex(
         (item) => item.name === target
       );
 
-      let compute = Settings.data.scenes[s].entitys[i];
+      let compute = arr[s].entitys[i];
       compute.pos = { x: "150", y: "365" };
       return compute
     };
@@ -66,12 +68,12 @@ export default class Rockpaperscissor {
       };
       // get alll necessary data
       var co = comRng();
-      c = Settings.data.scenes[s].entitys.findIndex(
+      c = arr[s].entitys.findIndex(
         (item) => item.name === co
       );
 
 
-      let compute = Settings.data.scenes[s].entitys[c]
+      let compute = arr[s].entitys[c]
       compute.pos = { x: "710", y: "365" };
       return compute
     };
@@ -82,6 +84,7 @@ export default class Rockpaperscissor {
       };
       compute.entitys.push(obj);
       // Populate Elements.main again
+      console.log(compute)
       Elements.populate(compute, "main");
     };
 
@@ -119,6 +122,7 @@ export default class Rockpaperscissor {
     // PhaseOne
     await new Promise((resolve)=>{
       p = getPlayerFigure();
+      console.log(p)
       //clear Elements.main
       Elements.clearMain();
       //start populating
@@ -151,7 +155,6 @@ export default class Rockpaperscissor {
     //reload rockpaperscissor and reset event
     Pointer.resetaction();
     Scene.setup(Settings.data.scenes[s],resolve);
-    console.log(Settings.data.scenes[s])
    })
   }
 

@@ -1,5 +1,5 @@
 // Class to manage Pointer controlles also made with the help from source video
-import Snake from "../actions/keys/snake.js";
+import Snake from "../actions/keys/snake/snake.js";
 export class Keys{
     static #input;
 

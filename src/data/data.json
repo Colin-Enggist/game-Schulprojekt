@@ -66,6 +66,14 @@
                 {"type":"circle", "x":"15", "y":"15", "r":"15","color":"darkblue"}
                 
                 ]},
+                {"type":"body","name":"snakebody", "pos":{"x":"200","y":"380"},"dim":{"w":"30","h":"30"},
+            "actions":[
+                {"type":"snake","value":"player"}
+            ],
+            "display":[
+                {"type":"circle", "x":"15", "y":"15", "r":"15","color":"darkblue"}
+                
+                ]},
 
               
             {"type":"goal", "name":"point", "pos":{"x":"450","y":"600"},"dim":{"w":"24","h":"24"},

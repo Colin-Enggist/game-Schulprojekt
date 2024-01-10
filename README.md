@@ -9,9 +9,12 @@ This project involved creating a simple game engine and implementing two games, 
 To run the application, you need npm installed. Follow these steps:
 
 1. Install Node modules by running:
-
+    
+    npm install
 
 2. Start the local development server with the command:
+
+    npm start
 
 **The Game Engine**
 
